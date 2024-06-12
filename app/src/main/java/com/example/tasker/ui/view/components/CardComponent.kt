@@ -57,7 +57,7 @@ fun CardComponent(id: String = "uwu", title: String = "Default title", status: S
         onClick = { println(id) }, // Todo: return task id for show its content
         modifier = Modifier
             .fillMaxWidth()
-            .height(100.dp)
+            .height(80.dp)
             .padding(5.dp),
         colors = CardDefaults.cardColors(colors.statusBackgroundColor),
         ){
