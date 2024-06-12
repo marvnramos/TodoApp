@@ -2,11 +2,7 @@ package com.example.tasker.ui.view.components
 
 import android.annotation.SuppressLint
 import android.widget.Toast
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,7 +21,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.example.tasker.R
 
@@ -96,13 +91,7 @@ fun ToolBarComponent(){
                 }
             )
         },
-    ){ paddingValues ->
-        Column(modifier = Modifier
-            .padding(paddingValues)
-            .padding(10.dp)
-            .verticalScroll(state = ScrollState(0), enabled  = true)
-        ) {
-            CardComponent()
-        }
+   ){
+
     }
 }
