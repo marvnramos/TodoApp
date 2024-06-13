@@ -33,7 +33,12 @@ import com.example.tasker.ui.view.theme.CardProperties
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun CardComponent(id: String = "uwu", title: String = "Default title", status: Status = Status.DONE){
+fun CardComponent(
+    id: String = "uwu",
+    title: String = "Default title",
+    status: Status = Status.DONE,
+    icon : Painter = painterResource(id = R.drawable.book)
+){
     val context = LocalContext.current
 
     val colors = remember(status){
