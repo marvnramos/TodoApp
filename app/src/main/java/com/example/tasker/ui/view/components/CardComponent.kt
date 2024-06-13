@@ -41,19 +41,22 @@ fun CardComponent(
 ){
     val context = LocalContext.current
 
-    val colors = remember(status){
+    val cardProperties = remember(status){
         when(status){
             Status.DONE -> CardProperties(
                 statusBackgroundColor = Color(ContextCompat.getColor(context, R.color.mint)),
-                statusIconColor = Color(ContextCompat.getColor(context, R.color.green))
+                statusIconColor = Color(ContextCompat.getColor(context, R.color.green)),
+                statusIcon = R.drawable.done_icon
             )
             Status.TODO ->CardProperties(
                 statusBackgroundColor = Color(ContextCompat.getColor(context, R.color.pink)),
-                statusIconColor = Color(ContextCompat.getColor(context, R.color.red))
+                statusIconColor = Color(ContextCompat.getColor(context, R.color.red)),
+                statusIcon = R.drawable.done_icon
             )
             Status.IN_PROGRESS -> CardProperties(
                 statusBackgroundColor = Color(ContextCompat.getColor(context, R.color.lightYellow)),
-                statusIconColor = Color(ContextCompat.getColor(context, R.color.cream))
+                statusIconColor = Color(ContextCompat.getColor(context, R.color.cream)),
+                statusIcon = R.drawable.done_icon
             )
         }
     }
