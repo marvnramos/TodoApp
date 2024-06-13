@@ -60,7 +60,7 @@ fun ToolBarComponent(){
                     DropdownMenu(
                         expanded = menuExpanded.value,
                         onDismissRequest = { menuExpanded.value = false },
-                        modifier = Modifier.background(Color(ContextCompat.getColor(context, R.color.orangeSoft)))
+                        modifier = Modifier.background(Color(ContextCompat.getColor(context, R.color.white)))
                     ) {
                         DropdownMenuItem(
                             text = { Text(text = "Por hacer") },
