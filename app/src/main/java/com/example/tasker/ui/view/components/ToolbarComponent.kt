@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
 import com.example.tasker.R
@@ -49,10 +48,7 @@ fun ToolBarComponent(){
                         tint = Color(ContextCompat.getColor(context, R.color.orange))
                     )
                 },
-                title = {
-                    Text("App Bar", fontWeight = FontWeight.Bold)
-
-                },
+                title = { /* there's not title */ },
                 actions = {
                     IconButton(onClick = { menuExpanded.value = true }) {
                         Icon(
