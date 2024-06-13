@@ -3,6 +3,8 @@ package com.example.tasker.ui.view.components
 import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -52,7 +54,7 @@ fun ToolBarComponent(){
                 actions = {
                     IconButton(onClick = { menuExpanded.value = true }) {
                         Icon(
-                            painter = painterResource(id = R.drawable.more_vert),
+                            Icons.Rounded.MoreVert,
                             contentDescription = "More Options",
                             tint = Color(ContextCompat.getColor(context,R.color.orange))
                         )
