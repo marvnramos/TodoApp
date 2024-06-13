@@ -63,21 +63,28 @@ fun ToolBarComponent(){
                         modifier = Modifier.background(Color(ContextCompat.getColor(context, R.color.orangeSoft)))
                     ) {
                         DropdownMenuItem(
-                            text = { Text(text = "Option 1") },
+                            text = { Text(text = "Por hacer") },
                             onClick = {
                                 menuExpanded.value = false
                                 Toast.makeText(context, "clicked 1", Toast.LENGTH_SHORT).show()
                             }
                         )
                         DropdownMenuItem(
-                            text = { Text(text = "Option 2") },
+                            text = { Text(text = "En progreso") },
                             onClick = {
                                 menuExpanded.value = false
                                 Toast.makeText(context, "clicked 2", Toast.LENGTH_SHORT).show()
                             }
                         )
                         DropdownMenuItem(
-                            text = { Text(text = "Option 3") },
+                            text = { Text(text = "Hecho") },
+                            onClick = {
+                                menuExpanded.value = false
+                                Toast.makeText(context, "clicked 3", Toast.LENGTH_SHORT).show()
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text(text = "Todo") },
                             onClick = {
                                 menuExpanded.value = false
                                 Toast.makeText(context, "clicked 3", Toast.LENGTH_SHORT).show()
