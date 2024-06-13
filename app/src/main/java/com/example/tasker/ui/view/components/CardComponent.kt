@@ -52,12 +52,12 @@ fun CardComponent(
             Status.TODO ->CardProperties(
                 statusBackgroundColor = Color(ContextCompat.getColor(context, R.color.pink)),
                 statusIconColor = Color(ContextCompat.getColor(context, R.color.red)),
-                statusIcon = R.drawable.done_icon
+                statusIcon = R.drawable.todo_icon
             )
             Status.IN_PROGRESS -> CardProperties(
                 statusBackgroundColor = Color(ContextCompat.getColor(context, R.color.lightYellow)),
                 statusIconColor = Color(ContextCompat.getColor(context, R.color.cream)),
-                statusIcon = R.drawable.done_icon
+                statusIcon = R.drawable.in_progress_icon
             )
         }
     }
