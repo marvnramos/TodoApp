@@ -10,8 +10,11 @@
     <color name="pink">#F7D4D3</color>
     <color name="red">#DD524C</color>
     <color name="lightGrey">#E3E8EF</color>
-    <color name="darkGrey">#97A3B6</color>
-    <color name="blue">#3662E3</color>
+    <color name="grey">#97A3B6</color>
+    <color name="darkGrey">#868e96</color>
+    <color name="darkBlue">#3662E3</color>
+    <color name="blue">#1971c2</color>
+    <color name="lightBlue">#a5d8ff</color>
     <color name="redLight">#FB6D48</color>
     <color name="cream">#d49d10</color>
 </resources>
