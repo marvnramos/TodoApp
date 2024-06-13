@@ -67,7 +67,7 @@ fun CardComponent(
             .fillMaxWidth()
             .height(80.dp)
             .padding(5.dp),
-        colors = CardDefaults.cardColors(colors.statusBackgroundColor),
+        colors = CardDefaults.cardColors(cardProperties.statusBackgroundColor),
         ){
 
         Row(
@@ -98,7 +98,7 @@ fun CardComponent(
             )
             Spacer(modifier = Modifier.weight(1f))
             Card(
-                colors = CardDefaults.cardColors(colors.statusIconColor),
+                colors = CardDefaults.cardColors(cardProperties.statusIconColor),
                 modifier = Modifier
                     .padding(5.dp)
                     .size(50.dp, 50.dp),
@@ -107,7 +107,7 @@ fun CardComponent(
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
                     Image(
                         modifier = Modifier.size(25.dp,25.dp),
-                        painter = painterResource(id = R.drawable.book_icon),
+                        painter = painterResource(id = cardProperties.statusIcon),
                         contentDescription = stringResource(id = R.string.dog_content_description)
                     )
                 }
