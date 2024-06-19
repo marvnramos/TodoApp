@@ -39,7 +39,7 @@ fun TaskManagerBarComponent(){
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(ContextCompat.getColor(context, R.color.white)),
+//                    containerColor = Color(ContextCompat.getColor(context, R.color.white)),
                     titleContentColor = Color(ContextCompat.getColor(context, R.color.orange)),
                 ),
                 navigationIcon = {
