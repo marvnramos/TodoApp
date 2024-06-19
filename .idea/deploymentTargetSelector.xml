@@ -17,6 +17,9 @@
       <SelectionState runConfigName="TaskManagerBarComponent">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="TaskManagerScreen">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
