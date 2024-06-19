@@ -17,4 +17,6 @@
     <color name="lightBlue">#a5d8ff</color>
     <color name="redLight">#FB6D48</color>
     <color name="cream">#d49d10</color>
+    <color name="grey_title">#e9ecef</color>
+    <color name="grey_title_border">#868e96</color>
 </resources>
