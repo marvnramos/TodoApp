@@ -36,7 +36,7 @@ fun HomeScreen() {
                 .fillMaxSize()
                 .padding(top = 75.dp)
                 .verticalScroll(rememberScrollState())
-                .background(Color(ContextCompat.getColor(context, R.color.white))),
+//                .background(Color(ContextCompat.getColor(context, R.color.white))),
 
         ) {
             CardComponent("tarea1", title = "tarea 1", Status.TODO)
@@ -46,15 +46,7 @@ fun HomeScreen() {
             CardComponent("tarea5", title = "tarea 5", Status.TODO)
             CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
             CardComponent("tarea7", title = "tarea 7", Status.DONE)
-            CardComponent("tarea8", title = "tarea 8", Status.DONE)
-            CardComponent("tarea1", title = "tarea 1", Status.TODO)
-            CardComponent("tarea2", title = "tarea 2", Status.IN_PROGRESS)
-            CardComponent("tarea3", title = "tarea 3", Status.DONE)
-            CardComponent("tarea4", title = "tarea 4", Status.IN_PROGRESS)
-            CardComponent("tarea5", title = "tarea 5", Status.TODO)
-            CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
-            CardComponent("tarea7", title = "tarea 7", Status.DONE)
-            CardComponent("tarea8", title = "tarea 8", Status.DONE)
+
 
 
         }
