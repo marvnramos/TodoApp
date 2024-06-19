@@ -2,6 +2,7 @@ package com.example.tasker.ui.view.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -78,8 +79,9 @@ fun TextFieldComponent( lengthIndicator: Boolean = true){
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
                 .height(150.dp)
+                .padding(10.dp)
         } else {
-            Modifier.fillMaxWidth()
+            Modifier.fillMaxWidth().padding(10.dp)
         },
         textStyle = TextStyle(brush = brush),
 
