@@ -36,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tasker.data.models.Get
+import com.example.tasker.ui.view.screens.HomeScreen
 import com.example.tasker.ui.view.theme.TaskerTheme
 import retrofit2.Callback
 
@@ -51,7 +52,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    HomeScreen()
                 }
             }
         }
