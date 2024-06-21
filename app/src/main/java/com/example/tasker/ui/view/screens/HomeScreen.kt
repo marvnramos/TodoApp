@@ -24,7 +24,7 @@ fun HomeScreen() {
     val context = LocalContext.current
     Scaffold(
         topBar = { },
-        floatingActionButton = { AddButtonComponent()},
+        floatingActionButton = { AddButtonComponent() },
     ){
         ToolBarComponent()
         Column(
