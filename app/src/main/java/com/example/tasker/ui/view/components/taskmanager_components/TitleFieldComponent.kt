@@ -1,19 +1,13 @@
-package com.example.tasker.ui.view.components
+package com.example.tasker.ui.view.components.taskmanager_components
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -21,7 +15,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.example.tasker.R
@@ -55,46 +48,36 @@ fun TextLengthIndicator(text: String){
         }
     )
 }
-@Preview
+
 @Composable
-fun TextFieldComponent( lengthIndicator: Boolean = true){
+fun TitleFieldComponent(
+    text: String,
+    onTitleChanged: (String) -> Unit
+){
     val context = LocalContext.current
-    var text by remember { mutableStateOf("") }
+//    var text by remember { mutableStateOf("") }
+
     val brush = Brush.linearGradient(colors = rainbowColors)
-    var placeholdertext = "Escribe un título"
 
     OutlinedTextField(
         value = text,
         onValueChange = {
-            if(!lengthIndicator){
-                text = it
-                return@OutlinedTextField
-            }
-
             if(it.length <= 25){
-                text = it
+                onTitleChanged(it)
             }},
-        modifier = if (!lengthIndicator) {
+        modifier =
             Modifier
                 .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .height(150.dp)
-                .padding(10.dp)
-        } else {
-            Modifier.fillMaxWidth().padding(10.dp)
-        },
+                .padding(10.dp),
         textStyle = TextStyle(brush = brush),
 
         placeholder = {
-            if(!lengthIndicator){
-                placeholdertext = "Escribe una descripción"
-            }
-            Text(text=placeholdertext)},
+            Text(text="Escribe un título")},
+        keyboardActions = KeyboardActions {
 
+        },
         supportingText = {
-            if(lengthIndicator){
-                TextLengthIndicator(text)
-            }
+            TextLengthIndicator(text)
         },
         maxLines = 6,
         shape = RoundedCornerShape(8.dp),
