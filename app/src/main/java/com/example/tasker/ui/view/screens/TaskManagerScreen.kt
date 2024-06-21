@@ -8,36 +8,35 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.tasker.R
-import com.example.tasker.ui.view.components.AddButtonComponent
-import com.example.tasker.ui.view.components.TaskManagerBarComponent
-import com.example.tasker.ui.view.components.TextFieldComponent
+import com.example.tasker.ui.view.components.taskmanager_components.DescriptionFieldComponent
+import com.example.tasker.ui.view.components.taskmanager_components.TaskManagerBarComponent
+import com.example.tasker.ui.view.components.taskmanager_components.TitleFieldComponent
+import com.example.tasker.ui.view_model.TaskManagerViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Preview
 @Composable
-fun TaskManagerScreen() {
-    val robotoFamily = FontFamily(
-        Font(R.font.roboto_regular, FontWeight.Normal),
-        Font(R.font.roboto_light, FontWeight.Light),
-        Font(R.font.roboto_italic, FontWeight.Normal, FontStyle.Italic),
-        Font(R.font.roboto_medium, FontWeight.Medium),
-        Font(R.font.roboto_mediumitalic, FontWeight.Medium, FontStyle.Italic),
-        Font(R.font.roboto_bold, FontWeight.Bold),
-        Font(R.font.roboto_bolditalic, FontWeight.Bold, FontStyle.Italic)
-    )
+fun TaskManagerScreen( viewModel: TaskManagerViewModel = TaskManagerViewModel()) {
+    val title: String by viewModel.title.observeAsState(initial = "")
+    val description: String by viewModel.description.observeAsState(initial = "")
+//    val robotoFamily = FontFamily(
+//        Font(R.font.roboto_regular, FontWeight.Normal),
+//        Font(R.font.roboto_light, FontWeight.Light),
+//        Font(R.font.roboto_italic, FontWeight.Normal, FontStyle.Italic),
+//        Font(R.font.roboto_medium, FontWeight.Medium),
+//        Font(R.font.roboto_mediumitalic, FontWeight.Medium, FontStyle.Italic),
+//        Font(R.font.roboto_bold, FontWeight.Bold),
+//        Font(R.font.roboto_bolditalic, FontWeight.Bold, FontStyle.Italic)
+//    )
     Scaffold(
         topBar = { },
-        floatingActionButton = { AddButtonComponent() },
     ) {
-        TaskManagerBarComponent()
+        TaskManagerBarComponent(title, description)
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -51,7 +50,15 @@ fun TaskManagerScreen() {
 //                fontFamily = robotoFamily,
 //                fontWeight = FontWeight.Normal
             )
-            TextFieldComponent(true)
+            TitleFieldComponent(
+                text = title,
+//                onTitleChanged = {
+//                    viewModel.onTextFieldChanged(title, it)
+//                }
+            ){
+                viewModel.onTextFieldChanged(it, description)
+            }
+
             Text(
                 text = "Descripción",
                 modifier = Modifier
@@ -60,7 +67,10 @@ fun TaskManagerScreen() {
 //                fontFamily = robotoFamily,
 //                fontWeight = FontWeight.Normal
             )
-            TextFieldComponent(false)
+
+            DescriptionFieldComponent(text = description){
+                viewModel.onTextFieldChanged(title, it)
+            }
         }
     }
 }
