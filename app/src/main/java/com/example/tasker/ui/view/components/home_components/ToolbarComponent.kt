@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.components
+package com.example.tasker.ui.view.components.home_components
 
 import android.annotation.SuppressLint
 import android.widget.Toast

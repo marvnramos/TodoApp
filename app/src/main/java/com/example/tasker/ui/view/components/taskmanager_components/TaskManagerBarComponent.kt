@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.components
+package com.example.tasker.ui.view.components.taskmanager_components
 
 import android.annotation.SuppressLint
 import android.widget.Toast
@@ -24,17 +24,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.example.tasker.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Preview
+//@Preview
 @Composable
-fun TaskManagerBarComponent(){
+fun TaskManagerBarComponent(title: String, description: String){
     val context = LocalContext.current
+
     Scaffold (
         topBar = {
             TopAppBar(
@@ -57,10 +57,13 @@ fun TaskManagerBarComponent(){
                 actions = {
                     IconButton(
                         onClick = {
-                            Toast.makeText(context, "Deleted!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, title, Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier
-                            .background(Color(ContextCompat.getColor(context, R.color.darkGrey)), shape = RoundedCornerShape(8.dp))
+                            .background(
+                                Color(ContextCompat.getColor(context, R.color.darkGrey)),
+                                shape = RoundedCornerShape(8.dp)
+                            )
                             .border(
                                 BorderStroke(1.dp, Color.DarkGray),
                                 shape = RoundedCornerShape(8.dp)
