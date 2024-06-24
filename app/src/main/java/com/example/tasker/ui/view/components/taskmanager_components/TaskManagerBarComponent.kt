@@ -19,6 +19,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -27,12 +28,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.example.tasker.R
+import com.example.tasker.data.models.Status
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 //@Preview
 @Composable
-fun TaskManagerBarComponent(title: String, description: String){
+fun TaskManagerBarComponent(title: String, description: String, status: MutableState<Status?>){
     val context = LocalContext.current
 
     Scaffold (
@@ -57,7 +59,7 @@ fun TaskManagerBarComponent(title: String, description: String){
                 actions = {
                     IconButton(
                         onClick = {
-                            Toast.makeText(context, title, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, status.value.toString(), Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier
                             .background(
