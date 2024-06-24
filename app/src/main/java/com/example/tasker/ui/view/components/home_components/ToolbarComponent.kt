@@ -31,16 +31,13 @@ import com.example.tasker.R
 @Preview
 fun ToolBarComponent(){
     val context = LocalContext.current
-    val barColor = Color(
-        ContextCompat.getColor(context, R.color.white)
-    )
+
     val menuExpanded = remember { mutableStateOf(false) }
 
     Scaffold (
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = barColor,
                     titleContentColor = Color(ContextCompat.getColor(context, R.color.orange)),
                 ),
                 navigationIcon = {
