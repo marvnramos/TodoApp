@@ -97,10 +97,10 @@ fun StatusComponent(
         trailingIcon = if (isSelected) {
             {
                 Box(
-                    Modifier.border(
-                        BorderStroke(2.dp, Color.Black),
-                        shape = RoundedCornerShape(1.dp),
-                    )
+//                    Modifier.border(
+//                        BorderStroke(2.dp, Color.Black),
+//                        shape = RoundedCornerShape(1.dp),
+//                    )
                 ) {
                     Icon(
                         Icons.Rounded.Check,
