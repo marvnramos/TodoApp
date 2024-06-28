@@ -62,7 +62,12 @@ fun StatusComponent(
     FilterChip(
         selected = isSelected,
         onClick = onStatusSelected,
-        label = { Text(text = statusProperties.statusText) },
+        label = {
+            Text(
+                text = statusProperties.statusText,
+                fontSize = 10.sp,
+                fontWeight = FontWeight.Bold
+            ) },
         modifier = Modifier.then(
             if (isSelected) {
                 Modifier.border(
