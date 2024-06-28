@@ -75,7 +75,7 @@ fun StatusComponent(
                     shape = RoundedCornerShape(8.dp)
                 ).padding(0.dp)
             } else {
-                Modifier.padding(0.dp)
+                Modifier.padding(0.dp).width(120.dp)
             }
         ),
         leadingIcon = {
