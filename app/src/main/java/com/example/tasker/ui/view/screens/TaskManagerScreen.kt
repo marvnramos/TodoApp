@@ -1,8 +1,12 @@
 package com.example.tasker.ui.view.screens
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,6 +16,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,10 +30,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import androidx.core.content.ContextCompat
 import com.example.tasker.R
 import com.example.tasker.data.models.Status
+import com.example.tasker.ui.view.components.taskmanager_components.DateButtonComponent
+import com.example.tasker.ui.view.components.taskmanager_components.DatePickerComponent
 import com.example.tasker.ui.view.components.taskmanager_components.DescriptionFieldComponent
 import com.example.tasker.ui.view.components.taskmanager_components.IconComponent
 import com.example.tasker.ui.view.components.taskmanager_components.StatusComponent
@@ -40,6 +56,7 @@ fun TaskManagerScreen( viewModel: TaskManagerViewModel = TaskManagerViewModel())
     val description: String by viewModel.description.observeAsState(initial = "")
     val selectedStatus = remember { mutableStateOf<Status?>(null) }
 
+    val context = LocalContext.current
 //    val robotoFamily = FontFamily(
 //        Font(R.font.roboto_regular, FontWeight.Normal),
 //        Font(R.font.roboto_light, FontWeight.Light),
@@ -141,6 +158,26 @@ fun TaskManagerScreen( viewModel: TaskManagerViewModel = TaskManagerViewModel())
                 IconComponent(R.drawable.pc)
                 IconComponent(R.drawable.thinking)
                 IconComponent(R.drawable.workout)
+            }
+            DateButtonComponent()
+            Dialog(
+                onDismissRequest = { /*TODO*/ },
+            ) {
+                Card (
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(ContextCompat.getColor(context, R.color.white))
+                    )
+                ){
+                    DatePickerComponent()
+                    Row {
+                        Button(onClick = { /*TODO*/ }) {
+                            Text(text = "Cancelar")
+                        }
+                        Button(onClick = { /*TODO*/ }) {
+                            Text(text = "Ok")
+                        }
+                    }
+                }
             }
         }
     }
