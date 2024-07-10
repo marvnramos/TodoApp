@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Tasker</string>
     <string name="dog_content_description">uu</string>
+    <string name="text_btn_date_picker">Fecha de Entrega</string>
 </resources>
