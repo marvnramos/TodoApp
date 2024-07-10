@@ -47,7 +47,7 @@ fun IconComponent(imageId: Int = R.drawable.coffe){
             }else{
                 Modifier
                     .size(50.dp)
-                .clickable { selected = !selected }
+                    .clickable { selected = !selected }
             }
         ),
 
