@@ -19,4 +19,5 @@
     <color name="cream">#d49d10</color>
     <color name="grey_title">#e9ecef</color>
     <color name="grey_title_border">#868e96</color>
+    <color name="grey_date">#ced4da</color>
 </resources>
