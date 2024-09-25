@@ -35,7 +35,7 @@ fun EmailTextField(
             .fillMaxWidth()
             .padding(10.dp),
         textStyle = TextStyle.Default,
-        placeholder = { Text(text = "mail@example.com") },
+        placeholder = { Text(text = "mail@ejemplo.com") },
         isError = !isValid,
         singleLine = true,
         maxLines = 1,
@@ -62,11 +62,7 @@ fun EmailTextField(
 @Composable
 fun EmailFieldContainer() {
     var email by remember { mutableStateOf("") }
-    val isValidEmail = if (email.isNotEmpty()) {
-        isValidEmail(email)
-    } else {
-        true
-    }
+    val isValidEmail = if (email.isNotEmpty()) isValidEmail(email) else true
 
     val errorMessage = if (!isValidEmail) "Dirección de correo invalida" else null
 
