@@ -42,7 +42,7 @@ fun PasswordTextFieldPreview(viewModel: AuthViewModel = AuthViewModel()) {
     Column {
         PasswordTextField(
             text = password,
-            availableValidation = false,
+            availableValidation = true,
             isValid = isValid,
             errorMessages = errorMessages,
             onTextChanged = { viewModel.onValueChanged(password = it) }
@@ -67,6 +67,21 @@ fun PasswordTextField(
     errorMessages: List<String>,
     onTextChanged: (String) -> Unit
 ) {
+    val indicatorColor = if (isValid) Orange else Color.Red
+    val unfocusedIndicatorColor = if (isValid) GreyTitleBorder else Color.Red
+    val labelColor = if (isValid) Orange else Color.Red
+
+    val colors = TextFieldDefaults.colors(
+        focusedIndicatorColor = if (availableValidation) indicatorColor else Orange,
+        unfocusedIndicatorColor = if (availableValidation) unfocusedIndicatorColor else GreyTitleBorder,
+        cursorColor = Orange,
+        focusedContainerColor = GreyTitle,
+        focusedLabelColor = if (availableValidation) labelColor else Orange,
+        unfocusedLabelColor = Color.Black,
+        unfocusedPlaceholderColor = Color.LightGray,
+        unfocusedContainerColor = GreyTitle
+    )
+
     Column {
         OutlinedTextField(
             value = text,
@@ -78,33 +93,11 @@ fun PasswordTextField(
                 .padding(5.dp),
             textStyle = TextStyle.Default,
             placeholder = { Text(text = "Escribe tu contraseña") },
-            isError = errorMessages.isNotEmpty(),
+            isError = if(availableValidation) errorMessages.isNotEmpty() else false,
             singleLine = true,
             maxLines = 1,
             shape = RoundedCornerShape(8.dp),
-            colors = if (availableValidation) {
-                TextFieldDefaults.colors(
-                    focusedIndicatorColor = if (isValid) Orange else Color.Red,
-                    unfocusedIndicatorColor = if (isValid) GreyTitleBorder else Color.Red,
-                    cursorColor = Orange,
-                    focusedContainerColor = GreyTitle,
-                    focusedLabelColor = if (isValid) Orange else Color.Red,
-                    unfocusedLabelColor = Color.Black,
-                    unfocusedPlaceholderColor = Color.LightGray,
-                    unfocusedContainerColor = GreyTitle
-                )
-            } else {
-                TextFieldDefaults.colors(
-                    focusedIndicatorColor = Orange,
-                    unfocusedIndicatorColor = GreyTitleBorder,
-                    cursorColor = Orange,
-                    focusedContainerColor = GreyTitle,
-                    focusedLabelColor = Orange,
-                    unfocusedLabelColor = Color.Black,
-                    unfocusedPlaceholderColor = Color.LightGray,
-                    unfocusedContainerColor = GreyTitle
-                )
-            },
+            colors = colors,
             visualTransformation = PasswordVisualTransformation(),
             supportingText = {
                 if (errorMessages.isNotEmpty() && availableValidation) {
