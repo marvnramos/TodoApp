@@ -39,6 +39,24 @@ fun PasswordTextFieldPreview(viewModel: AuthViewModel = AuthViewModel()) {
         true
     }
 
+    val confirmedPassword by viewModel.confirmedPassword.observeAsState(initial = "")
+    var comparePasswordErrorMessages by remember { mutableStateOf<List<String>>(emptyList()) }
+
+    val samePassword = if (confirmedPassword.isNotEmpty()) {
+        if (!viewModel.comparePasswords(MutableLiveData(password), MutableLiveData(confirmedPassword))) {
+            comparePasswordErrorMessages = listOf("Las contraseñas no coinciden.")
+            false
+        } else {
+            comparePasswordErrorMessages = emptyList()
+            true
+        }
+    } else {
+        comparePasswordErrorMessages = emptyList()
+        true
+    }
+
+
+
     Column {
         PasswordTextField(
             text = password,
@@ -48,14 +66,24 @@ fun PasswordTextFieldPreview(viewModel: AuthViewModel = AuthViewModel()) {
             onTextChanged = { viewModel.onValueChanged(password = it) }
         )
 
+        PasswordTextField(
+            text = confirmedPassword,
+            availableValidation = true,
+            isValid = samePassword,
+            errorMessages = comparePasswordErrorMessages,
+            onTextChanged = { viewModel.onValueChanged(confirmedPassword = it) }
+        )
+
+        val isButtonEnabled = isValid && samePassword && password.isNotEmpty() && confirmedPassword.isNotEmpty()
         Button(
             onClick = {
                 Toast.makeText(context, "Password Submitted", Toast.LENGTH_SHORT).show()
             },
-            enabled = isValid && password.isNotEmpty()
+            enabled = isButtonEnabled
         ) {
             Text(text = "Submit")
         }
+
     }
 }
 
@@ -93,7 +121,7 @@ fun PasswordTextField(
                 .padding(5.dp),
             textStyle = TextStyle.Default,
             placeholder = { Text(text = "Escribe tu contraseña") },
-            isError = if(availableValidation) errorMessages.isNotEmpty() else false,
+            isError = if (availableValidation) errorMessages.isNotEmpty() else false,
             singleLine = true,
             maxLines = 1,
             shape = RoundedCornerShape(8.dp),
