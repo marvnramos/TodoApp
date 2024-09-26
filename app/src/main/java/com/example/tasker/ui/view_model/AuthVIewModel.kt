@@ -18,8 +18,8 @@ class AuthViewModel : ViewModel() {
     private val _password = MutableLiveData<String>()
     val password: LiveData<String> = _password
 
-    fun isEmailValid(): Boolean {
-        val emailValue = _email.value ?: return false
+    fun isEmailValid(email: MutableLiveData<String>): Boolean {
+        val emailValue = email.value.toString()
         return Patterns.EMAIL_ADDRESS.matcher(emailValue).matches()
     }
 
@@ -30,7 +30,6 @@ class AuthViewModel : ViewModel() {
 
     fun isPasswordValid(password: MutableLiveData<String>): List<String> {
         val errorMessagesList = mutableListOf<String>()
-        val passwordValue = _password.value ?: ""
 
         if (!_atLeastOneDigit.containsMatchIn(password.value.toString())) {
             errorMessagesList.add("Password must contain at least one digit.")
