@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.components.home_components
+package com.example.tasker.ui.view.components.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box

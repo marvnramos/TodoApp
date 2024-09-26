@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.components.home_components
+package com.example.tasker.ui.view.components.home
 
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
