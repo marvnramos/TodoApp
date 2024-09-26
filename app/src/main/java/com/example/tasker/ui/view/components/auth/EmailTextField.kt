@@ -1,5 +1,6 @@
 package com.example.tasker.ui.view.components.auth
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,34 +29,41 @@ fun EmailTextField(
     errorMessage: String?,
     onTextChanged: (String) -> Unit
 ) {
-    OutlinedTextField(
-        value = text,
-        onValueChange = { onTextChanged(it) },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        textStyle = TextStyle.Default,
-        placeholder = { Text(text = "mail@ejemplo.com") },
-        isError = !isValid,
-        singleLine = true,
-        maxLines = 1,
-        shape = RoundedCornerShape(8.dp),
-        colors = TextFieldDefaults.colors(
-            focusedIndicatorColor = if (isValid) Orange else Color.Red,
-            unfocusedIndicatorColor = if (isValid) GreyTitleBorder else Color.Red,
-            cursorColor = Orange,
-            focusedContainerColor = GreyTitle,
-            focusedLabelColor = if (isValid) Orange else Color.Red,
-            unfocusedLabelColor = Color.Black,
-            unfocusedPlaceholderColor = Color.LightGray,
-            unfocusedContainerColor = GreyTitle
-        ),
-        supportingText = {
-            errorMessage?.let {
-                Text(text = it, color = Color.Red)
+    Column {
+        Text(
+            text = "Correo",
+            modifier = Modifier.padding(start = 10.dp),
+            style = TextStyle.Default
+        )
+        OutlinedTextField(
+            value = text,
+            onValueChange = { onTextChanged(it) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            textStyle = TextStyle.Default,
+            placeholder = { Text(text = "mail@ejemplo.com") },
+            isError = !isValid,
+            singleLine = true,
+            maxLines = 1,
+            shape = RoundedCornerShape(8.dp),
+            colors = TextFieldDefaults.colors(
+                focusedIndicatorColor = if (isValid) Orange else Color.Red,
+                unfocusedIndicatorColor = if (isValid) GreyTitleBorder else Color.Red,
+                cursorColor = Orange,
+                focusedContainerColor = GreyTitle,
+                focusedLabelColor = if (isValid) Orange else Color.Red,
+                unfocusedLabelColor = Color.Black,
+                unfocusedPlaceholderColor = Color.LightGray,
+                unfocusedContainerColor = GreyTitle
+            ),
+            supportingText = {
+                errorMessage?.let {
+                    Text(text = it, color = Color.Red)
+                }
             }
-        }
-    )
+        )
+    }
 }
 
 @Preview
