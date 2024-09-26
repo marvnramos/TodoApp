@@ -43,7 +43,11 @@ fun PasswordTextFieldPreview(viewModel: AuthViewModel = AuthViewModel()) {
     var comparePasswordErrorMessages by remember { mutableStateOf<List<String>>(emptyList()) }
 
     val samePassword = if (confirmedPassword.isNotEmpty()) {
-        if (!viewModel.comparePasswords(MutableLiveData(password), MutableLiveData(confirmedPassword))) {
+        if (!viewModel.comparePasswords(
+                MutableLiveData(password),
+                MutableLiveData(confirmedPassword)
+            )
+        ) {
             comparePasswordErrorMessages = listOf("Las contraseñas no coinciden.")
             false
         } else {
@@ -67,6 +71,7 @@ fun PasswordTextFieldPreview(viewModel: AuthViewModel = AuthViewModel()) {
         )
 
         PasswordTextField(
+            label = "Confirmar contraseña",
             text = confirmedPassword,
             availableValidation = true,
             isValid = samePassword,
@@ -74,7 +79,8 @@ fun PasswordTextFieldPreview(viewModel: AuthViewModel = AuthViewModel()) {
             onTextChanged = { viewModel.onValueChanged(confirmedPassword = it) }
         )
 
-        val isButtonEnabled = isValid && samePassword && password.isNotEmpty() && confirmedPassword.isNotEmpty()
+        val isButtonEnabled =
+            isValid && samePassword && password.isNotEmpty() && confirmedPassword.isNotEmpty()
         Button(
             onClick = {
                 Toast.makeText(context, "Password Submitted", Toast.LENGTH_SHORT).show()
@@ -89,6 +95,7 @@ fun PasswordTextFieldPreview(viewModel: AuthViewModel = AuthViewModel()) {
 
 @Composable
 fun PasswordTextField(
+    label: String = "Contraseña",
     text: String,
     availableValidation: Boolean,
     isValid: Boolean,
@@ -111,10 +118,16 @@ fun PasswordTextField(
     )
 
     Column {
+        Text(
+            text = label,
+            modifier = Modifier.padding(start = 10.dp),
+            style = TextStyle.Default
+        )
+
         OutlinedTextField(
             value = text,
-            onValueChange = { newValue ->
-                onTextChanged(newValue)
+            onValueChange = {
+                onTextChanged(it)
             },
             modifier = Modifier
                 .fillMaxWidth()
