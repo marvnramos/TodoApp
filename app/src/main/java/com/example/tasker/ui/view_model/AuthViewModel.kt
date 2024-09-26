@@ -14,13 +14,16 @@ class AuthViewModel : ViewModel() {
     private val _minimumLength = Regex(".{8,}")
 
     private val _email = MutableLiveData<String>()
-    val email: LiveData<String> = _email
-
     private val _password = MutableLiveData<String>()
-    val password: LiveData<String> = _password
-
     private val _confirmedPassword = MutableLiveData<String>()
+    private val _username = MutableLiveData<String>()
+    private val _token = MutableLiveData<String>()
+
+    val email: LiveData<String> = _email
+    val password: LiveData<String> = _password
     val confirmedPassword: LiveData<String> = _confirmedPassword
+    val username: LiveData<String> = _username
+    val token: LiveData<String> = _token
 
     fun comparePasswords(
         password: MutableLiveData<String>,
@@ -37,11 +40,13 @@ class AuthViewModel : ViewModel() {
     fun onValueChanged(
         email: String? = null,
         password: String? = null,
-        confirmedPassword: String? = null
+        confirmedPassword: String? = null,
+        token: String? = null,
     ) {
         email?.let { _email.value = it }
         password?.let { _password.value = it }
         confirmedPassword?.let { _confirmedPassword.value = it }
+        token?.let { _token.value = it }
     }
 
     fun isPasswordValid(password: MutableLiveData<String>): List<String> {
