@@ -8,17 +8,17 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.MutableLiveData
 import com.example.tasker.ui.view.theme.GreyTitle
 import com.example.tasker.ui.view.theme.GreyTitleBorder
 import com.example.tasker.ui.view.theme.Orange
+import com.example.tasker.ui.view_model.AuthViewModel
 
 
 @Composable
@@ -60,9 +60,9 @@ fun EmailTextField(
 
 @Preview
 @Composable
-fun EmailFieldContainer() {
-    var email by remember { mutableStateOf("") }
-    val isValidEmail = if (email.isNotEmpty()) isValidEmail(email) else true
+fun EmailFieldContainer(authVM: AuthViewModel = AuthViewModel()) {
+    val email by authVM.email.observeAsState(initial = "")
+    val isValidEmail = if (email.isNotEmpty()) authVM.isEmailValid(MutableLiveData(email)) else true
 
     val errorMessage = if (!isValidEmail) "Dirección de correo invalida" else null
 
@@ -70,10 +70,6 @@ fun EmailFieldContainer() {
         text = email,
         isValid = isValidEmail,
         errorMessage = errorMessage,
-        onTextChanged = { email = it }
+        onTextChanged = { authVM.onValueChanged(email = it) }
     )
-}
-
-fun isValidEmail(email: String): Boolean {
-    return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
