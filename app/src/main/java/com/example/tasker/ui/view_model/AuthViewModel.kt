@@ -1,5 +1,6 @@
 package com.example.tasker.ui.view_model
 
+import android.support.v4.os.IResultReceiver._Parcel
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,14 +19,29 @@ class AuthViewModel : ViewModel() {
     private val _password = MutableLiveData<String>()
     val password: LiveData<String> = _password
 
+    private val _confirmedPassword = MutableLiveData<String>()
+    val confirmedPassword: LiveData<String> = _confirmedPassword
+
+    fun comparePasswords(
+        password: MutableLiveData<String>,
+        confirmedPassword: MutableLiveData<String>
+    ): Boolean {
+        return password.value == confirmedPassword.value
+    }
+
     fun isEmailValid(email: MutableLiveData<String>): Boolean {
         val emailValue = email.value.toString()
         return Patterns.EMAIL_ADDRESS.matcher(emailValue).matches()
     }
 
-    fun onValueChanged(email: String? = null, password: String? = null) {
+    fun onValueChanged(
+        email: String? = null,
+        password: String? = null,
+        confirmedPassword: String? = null
+    ) {
         email?.let { _email.value = it }
         password?.let { _password.value = it }
+        confirmedPassword?.let { _confirmedPassword.value = it }
     }
 
     fun isPasswordValid(password: MutableLiveData<String>): List<String> {
