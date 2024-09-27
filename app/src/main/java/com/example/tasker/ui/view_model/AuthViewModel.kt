@@ -25,11 +25,20 @@ class AuthViewModel : ViewModel() {
     val username: LiveData<String> = _username
     val token: LiveData<String> = _token
 
+    private fun String.isValidNumber(): Boolean {
+        val numberRegex = Regex("^\\d*\$")
+        return this.matches(numberRegex)
+    }
+
     fun comparePasswords(
         password: MutableLiveData<String>,
         confirmedPassword: MutableLiveData<String>
     ): Boolean {
         return password.value == confirmedPassword.value
+    }
+
+    fun isTokenValid(token: String): Boolean {
+        return token.isValidNumber()
     }
 
     fun isEmailValid(email: MutableLiveData<String>): Boolean {
