@@ -29,18 +29,19 @@ import com.example.tasker.ui.view_model.AuthViewModel
 fun TokenTextFieldPreview(authVM: AuthViewModel = AuthViewModel()) {
     val token by authVM.token.observeAsState(initial = "")
 
-    TokenTextField(
-        text = token,
-        onTextChanged = {
-            authVM.onValueChanged(token = it)
-        }
-    )
+//    TokenTextField(
+//        text = token,
+//        onTextChanged = {
+//            authVM.onValueChanged(token = it)
+//        }
+//    )
 }
 
 @Composable
 fun TokenTextField(
     text: String,
     isValid: Boolean,
+    isError: Boolean,
     onTextChanged: (String) -> Unit
 ) {
     val keyboardOptions = KeyboardOptions.Default.copy(
@@ -48,8 +49,8 @@ fun TokenTextField(
         imeAction = ImeAction.Done
     )
 
-    val isValid = text.length == 6
-    val errorIndicator = text.isNotEmpty() && !isValid
+//    val isValid = text.length == 6
+//    val errorIndicator = text.isNotEmpty() && !isValid
 
     val colorScheme = MaterialTheme.colorScheme
     val indicatorColor = if (isValid) colorScheme.primary else colorScheme.error
@@ -86,14 +87,14 @@ fun TokenTextField(
                 .padding(10.dp),
             textStyle = MaterialTheme.typography.bodyMedium,
             placeholder = { Text(text = "000000", style = MaterialTheme.typography.bodyMedium) },
-            isError = errorIndicator,
+            isError = isError,
             singleLine = true,
             maxLines = 1,
             keyboardOptions = keyboardOptions,
             shape = RoundedCornerShape(8.dp),
             colors = colors,
             supportingText = {
-                if (errorIndicator) {
+                if (isError) {
                     Text(text = "El código debe tener 6 dígitos", color = Color.Red)
                 }
             }

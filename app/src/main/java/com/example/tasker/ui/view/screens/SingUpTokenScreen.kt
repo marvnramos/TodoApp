@@ -16,7 +16,7 @@ import com.example.tasker.ui.view_model.AuthViewModel
 fun SingUpTokenScreen(authVM: AuthViewModel = AuthViewModel()) {
     val token by authVM.token.observeAsState(initial = "")
     val isValidToken =
-        if (token.isNotEmpty()) authVM.isTokenValid(token) else true
+        if (token.isNotEmpty()) (token.length == 6) else true
 
     val isAvailable = token.isNotEmpty() && isValidToken
 
@@ -30,7 +30,11 @@ fun SingUpTokenScreen(authVM: AuthViewModel = AuthViewModel()) {
         submitText = "Verificar",
         isAvailable = isAvailable,
     ) {
-        TokenTextField(text = token) {
+        TokenTextField(
+            text = token,
+            isValid = isValidToken,
+            isError = token.isNotEmpty() && !isValidToken
+        ) {
             authVM.onValueChanged(token = it)
         }
     }
