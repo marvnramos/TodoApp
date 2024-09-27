@@ -40,6 +40,7 @@ class AuthViewModel : ViewModel() {
     fun onValueChanged(
         email: String? = null,
         password: String? = null,
+        username: String? = null,
         confirmedPassword: String? = null,
         token: String? = null,
     ) {
@@ -47,6 +48,7 @@ class AuthViewModel : ViewModel() {
         password?.let { _password.value = it }
         confirmedPassword?.let { _confirmedPassword.value = it }
         token?.let { _token.value = it }
+        username?.let { _username.value = it }
     }
 
     fun isPasswordValid(password: MutableLiveData<String>): List<String> {
