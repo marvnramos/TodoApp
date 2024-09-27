@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -14,14 +15,10 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
-import com.example.tasker.ui.view.theme.GreyTitle
-import com.example.tasker.ui.view.theme.GreyTitleBorder
-import com.example.tasker.ui.view.theme.Orange
 import com.example.tasker.ui.view_model.AuthViewModel
 
 @Preview
@@ -102,26 +99,30 @@ fun PasswordTextField(
     errorMessages: List<String>,
     onTextChanged: (String) -> Unit
 ) {
-    val indicatorColor = if (isValid) Orange else Color.Red
-    val unfocusedIndicatorColor = if (isValid) GreyTitleBorder else Color.Red
-    val labelColor = if (isValid) Orange else Color.Red
+    val colorScheme = MaterialTheme.colorScheme
+
+    val indicatorColor = if (isValid) colorScheme.primary else colorScheme.error
+    val unfocusedIndicatorColor = if (isValid) colorScheme.outline else colorScheme.error
+    val labelColor = if (isValid) colorScheme.primary else colorScheme.error
+    val placeholderColor = colorScheme.onSurface.copy(alpha = 0.6f)
+    val containerColor = colorScheme.surface
 
     val colors = TextFieldDefaults.colors(
-        focusedIndicatorColor = if (availableValidation) indicatorColor else Orange,
-        unfocusedIndicatorColor = if (availableValidation) unfocusedIndicatorColor else GreyTitleBorder,
-        cursorColor = Orange,
-        focusedContainerColor = GreyTitle,
-        focusedLabelColor = if (availableValidation) labelColor else Orange,
-        unfocusedLabelColor = Color.Black,
-        unfocusedPlaceholderColor = Color.LightGray,
-        unfocusedContainerColor = GreyTitle
+        focusedIndicatorColor = if (availableValidation) indicatorColor else colorScheme.primary,
+        unfocusedIndicatorColor = if (availableValidation) unfocusedIndicatorColor else colorScheme.outline,
+        cursorColor = colorScheme.primary,
+        focusedContainerColor = containerColor,
+        focusedLabelColor = if (availableValidation) labelColor else colorScheme.primary,
+        unfocusedLabelColor = colorScheme.onSurface,
+        unfocusedPlaceholderColor = placeholderColor,
+        unfocusedContainerColor = containerColor
     )
 
     Column {
         Text(
             text = label,
             modifier = Modifier.padding(start = 10.dp),
-            style = TextStyle.Default
+            style = MaterialTheme.typography.bodyMedium
         )
 
         OutlinedTextField(
@@ -132,8 +133,13 @@ fun PasswordTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(5.dp),
-            textStyle = TextStyle.Default,
-            placeholder = { Text(text = "Escribe tu contraseña") },
+            textStyle = MaterialTheme.typography.bodyMedium,
+            placeholder = {
+                Text(
+                    text = "Escribe tu contraseña",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            },
             isError = if (availableValidation) errorMessages.isNotEmpty() else false,
             singleLine = true,
             maxLines = 1,
