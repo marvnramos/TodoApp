@@ -22,21 +22,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
 import com.example.tasker.R
-import com.example.tasker.ui.view.components.auth.EmailTextField
 import com.example.tasker.ui.view.components.auth.LabelClickable
 import com.example.tasker.ui.view.components.auth.PasswordTextField
 import com.example.tasker.ui.view.components.auth.SubmitButton
+import com.example.tasker.ui.view.components.auth.UsernameTextField
 import com.example.tasker.ui.view.theme.TaskerTheme
 import com.example.tasker.ui.view_model.AuthViewModel
 
 @Composable
 fun AuthScreen(authVM: AuthViewModel = AuthViewModel()) {
-    val email by authVM.email.observeAsState(initial = "")
+    val username by authVM.username.observeAsState(initial = "")
     val password by authVM.password.observeAsState(initial = "")
 
-    val isValidEmail = if (email.isNotEmpty()) authVM.isEmailValid(MutableLiveData(email)) else true
-    val isAvailable = password.isNotEmpty() && isValidEmail && email.isNotEmpty()
-    val errorMessage = if (!isValidEmail) "Dirección de correo invalida" else null
+    val isValidUsername= if (username.isNotEmpty()) authVM.isEmailValid(MutableLiveData(username)) else true
+    val isAvailable = password.isNotEmpty() && isValidUsername && username.isNotEmpty()
 
 
     Column(
@@ -75,12 +74,11 @@ fun AuthScreen(authVM: AuthViewModel = AuthViewModel()) {
             )
         }
 
-        EmailTextField(
-            text = email,
-            isValid = isValidEmail,
-            errorMessage = errorMessage,
-            onTextChanged = { authVM.onValueChanged(email = it) }
-        ) // username uu
+        UsernameTextField(
+            text = username,
+            onValueChange = { authVM.onValueChanged(username = it) }
+        )
+        Spacer(modifier = Modifier.height(15.dp))
         PasswordTextField(
             text = password,
             availableValidation = false,
