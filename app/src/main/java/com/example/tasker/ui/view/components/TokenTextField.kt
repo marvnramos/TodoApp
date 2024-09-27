@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -39,6 +40,7 @@ fun TokenTextFieldPreview(authVM: AuthViewModel = AuthViewModel()) {
 @Composable
 fun TokenTextField(
     text: String,
+    isValid: Boolean,
     onTextChanged: (String) -> Unit
 ) {
     val keyboardOptions = KeyboardOptions.Default.copy(
@@ -49,22 +51,29 @@ fun TokenTextField(
     val isValid = text.length == 6
     val errorIndicator = text.isNotEmpty() && !isValid
 
+    val colorScheme = MaterialTheme.colorScheme
+    val indicatorColor = if (isValid) colorScheme.primary else colorScheme.error
+    val unfocusedIndicatorColor = if (isValid) colorScheme.outline else colorScheme.error
+    val labelColor = if (isValid) colorScheme.primary else colorScheme.error
+    val placeholderColor = colorScheme.onSurface.copy(alpha = 0.6f)
+    val containerColor = colorScheme.surface
+
     val colors = TextFieldDefaults.colors(
-        focusedIndicatorColor = if (!errorIndicator) Orange else Color.Red,
-        unfocusedIndicatorColor = if (!errorIndicator) GreyTitleBorder else Color.Red,
-        cursorColor = Orange,
-        focusedContainerColor = GreyTitle,
-        focusedLabelColor = if (!errorIndicator) Orange else Color.Red,
-        unfocusedLabelColor = Color.Black,
-        unfocusedPlaceholderColor = Color.LightGray,
-        unfocusedContainerColor = GreyTitle
+        focusedIndicatorColor = indicatorColor,
+        unfocusedIndicatorColor = unfocusedIndicatorColor,
+        cursorColor = colorScheme.primary,
+        focusedContainerColor = containerColor,
+        focusedLabelColor = labelColor,
+        unfocusedLabelColor = colorScheme.onSurface,
+        unfocusedPlaceholderColor = placeholderColor,
+        unfocusedContainerColor = containerColor
     )
 
     Column {
         Text(
             text = "Código",
             modifier = Modifier.padding(start = 10.dp),
-            style = TextStyle.Default
+            style = MaterialTheme.typography.bodyMedium
         )
 
         OutlinedTextField(
@@ -75,8 +84,8 @@ fun TokenTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp),
-            textStyle = TextStyle.Default,
-            placeholder = { Text(text = "000000") },
+            textStyle = MaterialTheme.typography.bodyMedium,
+            placeholder = { Text(text = "000000", style = MaterialTheme.typography.bodyMedium) },
             isError = errorIndicator,
             singleLine = true,
             maxLines = 1,
