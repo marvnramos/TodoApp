@@ -20,11 +20,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.style.TextAlign
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-    fun SingUpTemplate(
+fun SingUpTemplate(
     onArrowClick: () -> Unit,
     onTextClick: () -> Unit,
     onSubmitClick: () -> Unit,
@@ -62,7 +63,8 @@ import androidx.compose.ui.unit.dp
                 Text(
                     text = textIndicator,
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = MaterialTheme.colorScheme.onSurface,
+                    textAlign = TextAlign.Center
                 )
             }
 
