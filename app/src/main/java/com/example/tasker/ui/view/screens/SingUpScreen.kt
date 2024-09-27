@@ -58,7 +58,6 @@ fun SignUpScreen(authVM: AuthViewModel = AuthViewModel()) {
                 }
             )
         },
-        floatingActionButton = { /* Aquí puedes agregar un FAB si lo necesitas */ }
     ) { innerPadding ->
         Column(
             modifier = Modifier
