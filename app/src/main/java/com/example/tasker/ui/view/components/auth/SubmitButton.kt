@@ -22,9 +22,7 @@ fun SubmitButton(
 ) {
     val colorScheme = MaterialTheme.colorScheme
     OutlinedButton(
-        onClick = {
-
-        },
+        onClick = { onClick() },
         enabled = enabled,
         modifier = Modifier
             .width(250.dp)
