@@ -40,7 +40,7 @@ fun SubmitButton(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Iniciar sesión", style = MaterialTheme.typography.bodyMedium
+                text = text, style = MaterialTheme.typography.bodyMedium
             )
         }
     }
