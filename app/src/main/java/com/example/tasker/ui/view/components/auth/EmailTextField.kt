@@ -12,10 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
+import com.example.tasker.ui.view.theme.Red
 import com.example.tasker.ui.view_model.AuthViewModel
 
 
@@ -70,7 +70,7 @@ fun EmailTextField(
             colors = colors,
             supportingText = {
                 errorMessage?.let {
-                    Text(text = it, color = Color.Red)
+                    Text(text = it, color = Red)
                 }
             }
         )
