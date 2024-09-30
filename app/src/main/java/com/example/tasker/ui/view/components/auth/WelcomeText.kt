@@ -1,5 +1,6 @@
 package com.example.tasker.ui.view.components.auth
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.example.tasker.R
 
 @Composable
-fun WelcomeText(text: String) {
+fun WelcomeText(text: String, addPhotoButtonEnable: Boolean = false) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = "¡Bienvenido!",
@@ -34,16 +35,22 @@ fun WelcomeText(text: String) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(40.dp),
+                .padding(horizontal = 40.dp, vertical = 20.dp),
             contentAlignment = Alignment.Center
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.icon),
-                contentDescription = "Icono de App",
-                modifier = Modifier
-                    .height(175.dp)
-                    .width(175.dp)
-            )
+            if (!addPhotoButtonEnable) {
+                Image(
+                    painter = painterResource(id = R.drawable.icon),
+                    contentDescription = "Icono de App",
+                    modifier = Modifier
+                        .height(175.dp)
+                        .width(175.dp)
+                )
+                return
+            }
+            AddPhotoButton {
+                Log.d("AddPhotoButton", "AddPhotoButton clicked uwu")
+            }
         }
     }
 }
