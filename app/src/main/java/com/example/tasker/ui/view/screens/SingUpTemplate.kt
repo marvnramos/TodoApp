@@ -39,6 +39,7 @@ fun SingUpTemplate(
     submitText: String,
     isAvailable: Boolean,
     textFieldComponent: @Composable () -> Unit,
+    addPhotoButtonEnable: Boolean = false,
 ) {
     Scaffold(
         topBar = {
@@ -67,7 +68,7 @@ fun SingUpTemplate(
             verticalArrangement = Arrangement.SpaceBetween  // Pushes elements apart vertically
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                WelcomeText(subWelcomeText)
+                WelcomeText(subWelcomeText, addPhotoButtonEnable)
                 textIndicator?.let {
                     Text(
                         text = textIndicator,
