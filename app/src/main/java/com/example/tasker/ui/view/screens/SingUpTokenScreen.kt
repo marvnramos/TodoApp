@@ -7,7 +7,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tasker.ui.view.components.TokenTextField
-import com.example.tasker.ui.view.components.auth.SingUpTemplate
 import com.example.tasker.ui.view.theme.TaskerTheme
 import com.example.tasker.ui.view_model.AuthViewModel
 
@@ -15,7 +14,6 @@ import com.example.tasker.ui.view_model.AuthViewModel
 fun SingUpTokenScreen(authVM: AuthViewModel = AuthViewModel()) {
     val token by authVM.token.observeAsState(initial = "")
     val isValidToken = authVM.isTokenValid(token)
-    val isAvailable = isValidToken
 
     val context = LocalContext.current
     SingUpTemplate(
@@ -25,7 +23,7 @@ fun SingUpTokenScreen(authVM: AuthViewModel = AuthViewModel()) {
         subWelcomeText = "Verificación de correo",
         textIndicator = "Ingresa el código que recibiste \nen tu correo electrónico",
         submitText = "Verificar",
-        isAvailable = isAvailable,
+        isAvailable = isValidToken,
     ) {
         TokenTextField(
             text = token,
