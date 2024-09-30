@@ -9,13 +9,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.MutableLiveData
 import com.example.tasker.ui.view.components.auth.EmailTextField
-import com.example.tasker.ui.view.components.auth.SingUpTemplate
 import com.example.tasker.ui.view.theme.TaskerTheme
 import com.example.tasker.ui.view_model.AuthViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun SignUpScreen(authVM: AuthViewModel = AuthViewModel()) {
+fun SignUpEmailScreen(authVM: AuthViewModel = AuthViewModel()) {
     val email by authVM.email.observeAsState(initial = "")
     val isValidEmail =
         if (email.isNotEmpty()) authVM.isEmailValid(MutableLiveData(email)) else true
@@ -47,6 +46,6 @@ fun SignUpScreen(authVM: AuthViewModel = AuthViewModel()) {
 @Composable
 fun SignUpScreenPreview() {
     TaskerTheme {
-        SignUpScreen()
+        SignUpEmailScreen()
     }
 }
