@@ -32,14 +32,16 @@ fun SignUpEmailScreen(authVM: AuthViewModel = AuthViewModel()) {
         textIndicator = null,
         submitText = "Siguiente",
         isAvailable = isAvailable,
-    ) {
-        EmailTextField(
-            text = email,
-            isValid = isValidEmail,
-            errorMessage = errorMessage,
-            onTextChanged = { authVM.onValueChanged(email = it) }
-        )
-    }
+        textFieldComponent = {
+            EmailTextField(
+                text = email,
+                isValid = isValidEmail,
+                errorMessage = errorMessage,
+                onTextChanged = { authVM.onValueChanged(email = it) }
+            )
+
+        }
+    )
 }
 
 @Preview(showBackground = true)
