@@ -21,6 +21,7 @@ fun SingUpScreen(viewModel: AuthViewModel = AuthViewModel()) {
 
     val password by viewModel.password.observeAsState(initial = "")
     var comparePasswordErrorMessages by remember { mutableStateOf<List<String>>(emptyList()) }
+    val username by viewModel.username.observeAsState(initial = "")
     var errorMessages by remember { mutableStateOf<List<String>>(emptyList()) }
     val confirmedPassword by viewModel.confirmedPassword.observeAsState(initial = "")
 
@@ -49,6 +50,8 @@ fun SingUpScreen(viewModel: AuthViewModel = AuthViewModel()) {
         true
     }
 
+    val isAvailable = username.isNotEmpty() && password.isNotEmpty() && confirmedPassword.isNotEmpty() && isValid && samePassword
+
     SingUpTemplate(
         onArrowClick = { Toast.makeText(context, "Arrow Clicked", Toast.LENGTH_SHORT).show() },
         onTextClick = { Toast.makeText(context, "Text Clicked", Toast.LENGTH_SHORT).show() },
@@ -56,11 +59,11 @@ fun SingUpScreen(viewModel: AuthViewModel = AuthViewModel()) {
         subWelcomeText = "Ingresa tus datos",
         textIndicator = null,
         submitText = "Registrarse",
-        isAvailable = true
+        isAvailable = isAvailable
     ) {
         UsernameTextField(
-            text = "",
-            onValueChange = {}
+            text = username,
+            onValueChange = { viewModel.onValueChanged(username = it) }
         )
         PasswordTextField(
             text = password,
