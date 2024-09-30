@@ -19,10 +19,14 @@ import androidx.compose.ui.unit.dp
 import com.example.tasker.R
 
 @Composable
-fun WelcomeText(text: String, addPhotoButtonEnable: Boolean = false) {
+fun WelcomeText(
+    text: String,
+    title: String? = "¡Bienvenido!",
+    addPhotoButtonEnable: Boolean = false
+) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
-            text = "¡Bienvenido!",
+            text = title!!,
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onBackground
         )
@@ -35,7 +39,7 @@ fun WelcomeText(text: String, addPhotoButtonEnable: Boolean = false) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 40.dp, vertical = 20.dp),
+                .padding(40.dp),
             contentAlignment = Alignment.Center
         ) {
             if (!addPhotoButtonEnable) {
