@@ -36,7 +36,7 @@ fun AuthScreen(authVM: AuthViewModel = AuthViewModel()) {
         ) {
         Spacer(modifier = Modifier.height(50.dp))
         WelcomeText("Inicia sesión en tu cuenta")
-
+        Spacer(modifier = Modifier.height(25.dp))
         UsernameTextField(
             text = username,
             onValueChange = { authVM.onValueChanged(username = it) }
