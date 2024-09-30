@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.components.auth
+package com.example.tasker.ui.view.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,6 +23,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.style.TextAlign
+import com.example.tasker.ui.view.components.auth.LabelClickable
+import com.example.tasker.ui.view.components.auth.SubmitButton
+import com.example.tasker.ui.view.components.auth.WelcomeText
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -54,30 +59,34 @@ fun SingUpTemplate(
 
         Column(
             modifier = Modifier
+                .fillMaxHeight()
+                .verticalScroll(rememberScrollState())
                 .padding(innerPadding)
                 .padding(horizontal = 35.dp, vertical = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween  // Pushes elements apart vertically
         ) {
-            WelcomeText(subWelcomeText)
-            textIndicator?.let {
-                Text(
-                    text = textIndicator,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    textAlign = TextAlign.Center
-                )
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                WelcomeText(subWelcomeText)
+                textIndicator?.let {
+                    Text(
+                        text = textIndicator,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        textAlign = TextAlign.Center
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(25.dp))
+                textFieldComponent()
+
+                Spacer(modifier = Modifier.height(25.dp))
+                SubmitButton(text = submitText, onClick = { onSubmitClick() }, enabled = isAvailable)
+
+                Spacer(modifier = Modifier.height(25.dp))
             }
 
-            Spacer(modifier = Modifier.height(25.dp))
-            textFieldComponent()
-            Spacer(modifier = Modifier.height(25.dp))
-
-            SubmitButton(text = submitText, onClick = { onSubmitClick() }, enabled = isAvailable)
             Column(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(bottom = 20.dp),
-                verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 LabelClickable(
