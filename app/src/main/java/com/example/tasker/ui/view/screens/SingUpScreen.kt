@@ -54,7 +54,8 @@ fun SingUpScreen(viewModel: AuthViewModel = AuthViewModel()) {
         true
     }
 
-    val isAvailable = username.isNotEmpty() && password.isNotEmpty() && confirmedPassword.isNotEmpty() && isValid && samePassword
+    val isAvailable =
+        username.isNotEmpty() && password.isNotEmpty() && confirmedPassword.isNotEmpty() && isValid && samePassword
 
     SingUpTemplate(
         onArrowClick = { Toast.makeText(context, "Arrow Clicked", Toast.LENGTH_SHORT).show() },
@@ -63,30 +64,32 @@ fun SingUpScreen(viewModel: AuthViewModel = AuthViewModel()) {
         subWelcomeText = "Ingresa tus datos",
         textIndicator = null,
         submitText = "Registrarse",
-        isAvailable = isAvailable
-    ) {
-        UsernameTextField(
-            text = username,
-            onValueChange = { viewModel.onValueChanged(username = it) }
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        PasswordTextField(
-            text = password,
-            availableValidation = true,
-            isValid = isValid,
-            errorMessages = errorMessages,
-            onTextChanged = { viewModel.onValueChanged(password = it) }
-        )
+        isAvailable = isAvailable,
+        textFieldComponent = {
+            UsernameTextField(
+                text = username,
+                onValueChange = { viewModel.onValueChanged(username = it) }
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            PasswordTextField(
+                text = password,
+                availableValidation = true,
+                isValid = isValid,
+                errorMessages = errorMessages,
+                onTextChanged = { viewModel.onValueChanged(password = it) }
+            )
 
-        PasswordTextField(
-            label = "Confirmar contraseña",
-            text = confirmedPassword,
-            availableValidation = true,
-            isValid = samePassword,
-            errorMessages = comparePasswordErrorMessages,
-            onTextChanged = { viewModel.onValueChanged(confirmedPassword = it) }
-        )
-    }
+            PasswordTextField(
+                label = "Confirmar contraseña",
+                text = confirmedPassword,
+                availableValidation = true,
+                isValid = samePassword,
+                errorMessages = comparePasswordErrorMessages,
+                onTextChanged = { viewModel.onValueChanged(confirmedPassword = it) }
+            )
+        },
+        addPhotoButtonEnable = true,
+    )
 }
 
 @Preview
