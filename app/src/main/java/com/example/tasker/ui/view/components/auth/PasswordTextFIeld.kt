@@ -5,17 +5,27 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Visibility
+import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
@@ -97,9 +107,21 @@ fun PasswordTextField(
     availableValidation: Boolean,
     isValid: Boolean,
     errorMessages: List<String>,
-    onTextChanged: (String) -> Unit
+    onTextChanged: (String) -> Unit,
+    onClick: () -> Unit = {},
 ) {
     val colorScheme = MaterialTheme.colorScheme
+    val isPasswordVisible = remember { mutableStateOf(false) }
+    var visualTransformation by remember {
+        mutableStateOf<VisualTransformation>(
+            PasswordVisualTransformation()
+        )
+    }
+    var btnIcon by remember {
+        mutableStateOf(
+            Icons.Outlined.VisibilityOff
+        )
+    }
 
     val indicatorColor = if (isValid) colorScheme.primary else colorScheme.error
     val unfocusedIndicatorColor = if (isValid) colorScheme.outline else colorScheme.error
@@ -130,6 +152,13 @@ fun PasswordTextField(
             onValueChange = {
                 onTextChanged(it)
             },
+            trailingIcon = {
+                VisibilityButton(btnIcon, onClick = {
+                    val (transformation, icon) = buttonClick(isPasswordVisible)
+                    visualTransformation = transformation
+                    btnIcon = icon
+                })
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(5.dp),
@@ -145,7 +174,7 @@ fun PasswordTextField(
             maxLines = 1,
             shape = RoundedCornerShape(8.dp),
             colors = colors,
-            visualTransformation = PasswordVisualTransformation(),
+            visualTransformation = visualTransformation,
             supportingText = {
                 if (errorMessages.isNotEmpty() && availableValidation) {
                     Column {
@@ -156,5 +185,16 @@ fun PasswordTextField(
                 }
             }
         )
+    }
+}
+
+private fun buttonClick(
+    isPasswordVisible: MutableState<Boolean>
+): Pair<VisualTransformation, ImageVector> {
+    isPasswordVisible.value = !isPasswordVisible.value
+    return if (isPasswordVisible.value) {
+        VisualTransformation.None to Icons.Outlined.Visibility
+    } else {
+        PasswordVisualTransformation() to Icons.Outlined.VisibilityOff
     }
 }
