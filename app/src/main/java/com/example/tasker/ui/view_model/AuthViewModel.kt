@@ -1,6 +1,5 @@
 package com.example.tasker.ui.view_model
 
-import android.support.v4.os.IResultReceiver._Parcel
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -38,7 +37,10 @@ class AuthViewModel : ViewModel() {
     }
 
     fun isTokenValid(token: String): Boolean {
-        return token.isValidNumber()
+        if (token.isNotEmpty()) {
+            return token.length == 6 && token.isValidNumber()
+        }
+        return true
     }
 
     fun isEmailValid(email: MutableLiveData<String>): Boolean {
