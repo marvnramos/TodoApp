@@ -10,11 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.MutableLiveData
 import com.example.tasker.ui.view.components.auth.LabelClickable
 import com.example.tasker.ui.view.components.auth.PasswordTextField
 import com.example.tasker.ui.view.components.auth.SubmitButton
@@ -27,11 +26,7 @@ import com.example.tasker.ui.view_model.AuthViewModel
 fun AuthScreen(authVM: AuthViewModel = AuthViewModel()) {
     val username by authVM.username.observeAsState(initial = "")
     val password by authVM.password.observeAsState(initial = "")
-
-    val isValidUsername =
-        if (username.isNotEmpty()) authVM.isEmailValid(MutableLiveData(username)) else true
-    val isAvailable = password.isNotEmpty() && isValidUsername && username.isNotEmpty()
-
+    val isAvailable = password.isNotEmpty() && username.isNotEmpty()
 
     Column(
         modifier = Modifier
