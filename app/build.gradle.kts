@@ -77,11 +77,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Retrofit for API requests
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
     // ViewModel and LiveData for MVVM architecture
-    implementation (libs.androidx.lifecycle.viewmodel.compose)
-    implementation (libs.lifecycle.livedata)
-    implementation (libs.hilt.android)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.livedata)
+    implementation(libs.hilt.android)
+
+    implementation("androidx.compose.material:material-icons-extended:1.5.0")
 
 }
