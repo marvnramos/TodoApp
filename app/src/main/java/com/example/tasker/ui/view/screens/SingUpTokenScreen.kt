@@ -24,15 +24,16 @@ fun SingUpTokenScreen(authVM: AuthViewModel = AuthViewModel()) {
         textIndicator = "Ingresa el código que recibiste \nen tu correo electrónico",
         submitText = "Verificar",
         isAvailable = isValidToken,
-    ) {
-        TokenTextField(
-            text = token,
-            isValid = isValidToken,
-            isError = token.isNotEmpty() && !isValidToken
-        ) {
-            authVM.onValueChanged(token = it)
+        textFieldComponent = {
+            TokenTextField(
+                text = token,
+                isValid = isValidToken,
+                isError = token.isNotEmpty() && !isValidToken
+            ) {
+                authVM.onValueChanged(token = it)
+            }
         }
-    }
+    )
 }
 
 @Preview
