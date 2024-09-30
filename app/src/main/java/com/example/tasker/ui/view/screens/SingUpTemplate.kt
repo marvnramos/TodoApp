@@ -65,10 +65,10 @@ fun SingUpTemplate(
                 .padding(innerPadding)
                 .padding(horizontal = 35.dp, vertical = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween  // Pushes elements apart vertically
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                WelcomeText(subWelcomeText, addPhotoButtonEnable)
+                WelcomeText(text = subWelcomeText, addPhotoButtonEnable = addPhotoButtonEnable)
                 textIndicator?.let {
                     Text(
                         text = textIndicator,
@@ -82,7 +82,11 @@ fun SingUpTemplate(
                 textFieldComponent()
 
                 Spacer(modifier = Modifier.height(25.dp))
-                SubmitButton(text = submitText, onClick = { onSubmitClick() }, enabled = isAvailable)
+                SubmitButton(
+                    text = submitText,
+                    onClick = { onSubmitClick() },
+                    enabled = isAvailable
+                )
 
                 Spacer(modifier = Modifier.height(25.dp))
             }
