@@ -66,19 +66,19 @@ class AuthViewModel : ViewModel() {
         val errorMessagesList = mutableListOf<String>()
 
         if (!_atLeastOneDigit.containsMatchIn(password.value.toString())) {
-            errorMessagesList.add("Password must contain at least one digit.")
+            errorMessagesList.add("Debe contener al menos un digito.")
         }
         if (!_atLeastOneLowerCase.containsMatchIn(password.value.toString())) {
-            errorMessagesList.add("Password must contain at least one lowercase letter.")
+            errorMessagesList.add("Debe contener al menos una minúscula.")
         }
         if (!_atLeastOneUpperCase.containsMatchIn(password.value.toString())) {
-            errorMessagesList.add("Password must contain at least one uppercase letter.")
+            errorMessagesList.add("Debe contener al menos una mayúscula.")
         }
         if (!_atLeastOneSpecialChar.containsMatchIn(password.value.toString())) {
-            errorMessagesList.add("Password must contain at least one special character.")
+            errorMessagesList.add("Debe contener al menos un caracter especial.")
         }
         if (!_minimumLength.containsMatchIn(password.value.toString())) {
-            errorMessagesList.add("Password must contain at least 8 characters.")
+            errorMessagesList.add("Debe contener al menos 8 caracteres.")
         }
 
         return errorMessagesList
