@@ -18,9 +18,9 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddPhotoButton() {
+fun AddPhotoButton(onClick: () -> Unit) {
     Card(
-        onClick = {},
+        onClick = { onClick() },
         modifier = Modifier.size(175.dp),
         elevation = CardDefaults.elevatedCardElevation(2.dp),
         colors = CardDefaults.cardColors(
