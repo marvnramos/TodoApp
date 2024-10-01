@@ -18,6 +18,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +37,7 @@ fun SingUpTemplate(
     onSubmitClick: () -> Unit,
     subWelcomeText: String,
     textIndicator: String?,
+    title: String? = null,
     submitText: String,
     isAvailable: Boolean,
     textFieldComponent: @Composable () -> Unit,
@@ -53,7 +55,10 @@ fun SingUpTemplate(
                             tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surface,
+                )
             )
         }
     ) { innerPadding ->
@@ -68,7 +73,11 @@ fun SingUpTemplate(
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                WelcomeText(text = subWelcomeText, addPhotoButtonEnable = addPhotoButtonEnable)
+                WelcomeText(
+                    text = subWelcomeText,
+                    addPhotoButtonEnable = addPhotoButtonEnable,
+                    title = if (title.isNullOrEmpty()) "¡Bienvenido!" else title
+                )
                 textIndicator?.let {
                     Text(
                         text = textIndicator,
