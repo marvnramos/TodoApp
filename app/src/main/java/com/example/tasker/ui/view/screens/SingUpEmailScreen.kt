@@ -6,15 +6,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavHostController
 import com.example.tasker.ui.view.components.auth.EmailTextField
-import com.example.tasker.ui.view.theme.TaskerTheme
 import com.example.tasker.ui.view_model.AuthViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun SignUpEmailScreen(authVM: AuthViewModel = AuthViewModel()) {
+fun SignUpEmailScreen(
+    navController: NavHostController,
+    authVM: AuthViewModel = AuthViewModel()
+) {
     val email by authVM.email.observeAsState(initial = "")
     val isValidEmail =
         if (email.isNotEmpty()) authVM.isEmailValid(MutableLiveData(email)) else true
@@ -25,8 +27,8 @@ fun SignUpEmailScreen(authVM: AuthViewModel = AuthViewModel()) {
     val isAvailable = email.isNotEmpty() && !isError
     val context = LocalContext.current
     SingUpTemplate(
-        onArrowClick = { Toast.makeText(context, "Arrow Clicked", Toast.LENGTH_SHORT).show() },
-        onTextClick = { Toast.makeText(context, "Text Clicked", Toast.LENGTH_SHORT).show() },
+        onArrowClick = { navController.popBackStack() },
+        onTextClick = { navController.popBackStack() },
         onSubmitClick = { Toast.makeText(context, "Submit Clicked", Toast.LENGTH_SHORT).show() },
         subWelcomeText = "Registra una nueva cuenta",
         textIndicator = null,
@@ -44,10 +46,10 @@ fun SignUpEmailScreen(authVM: AuthViewModel = AuthViewModel()) {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun SignUpScreenPreview() {
-    TaskerTheme {
-        SignUpEmailScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SignUpScreenPreview() {
+//    TaskerTheme {
+//        SignUpEmailScreen()
+//    }
+//}
