@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.screens.AuthScreen
 import com.example.tasker.ui.view.screens.EmailScreen
 import com.example.tasker.ui.view.screens.SignUpEmailScreen
+import com.example.tasker.ui.view.screens.SingUpTokenScreen
 import com.example.tasker.ui.view.theme.TaskerTheme
 
 @Composable
@@ -36,6 +37,9 @@ fun AuthView() {
             }
             composable("EmailSignUpFlow") {
                 SignUpEmailScreen(navController)
+            }
+            composable("TokenSignUpFlow") {
+                SingUpTokenScreen(navController)
             }
         }
     }
