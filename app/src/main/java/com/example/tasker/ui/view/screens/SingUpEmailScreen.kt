@@ -29,7 +29,7 @@ fun SignUpEmailScreen(
     SingUpTemplate(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.popBackStack() },
-        onSubmitClick = { Toast.makeText(context, "Submit Clicked", Toast.LENGTH_SHORT).show() },
+        onSubmitClick = { pushToTokenScreen(navController) },
         subWelcomeText = "Registra una nueva cuenta",
         textIndicator = null,
         submitText = "Siguiente",
@@ -44,6 +44,11 @@ fun SignUpEmailScreen(
 
         }
     )
+}
+
+private fun pushToTokenScreen(navController: NavHostController) {
+    // TODO: Send token to email from server
+    navController.navigate("TokenSignUpFlow")
 }
 
 //@Preview(showBackground = true)
