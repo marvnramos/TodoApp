@@ -11,16 +11,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavHostController
 import com.example.tasker.ui.view.components.auth.PasswordTextField
 import com.example.tasker.ui.view.components.auth.UsernameTextField
-import com.example.tasker.ui.view.theme.TaskerTheme
 import com.example.tasker.ui.view_model.AuthViewModel
 
 @Composable
-fun SingUpScreen(viewModel: AuthViewModel = AuthViewModel()) {
+fun SingUpScreen(
+    navController: NavHostController,
+    viewModel: AuthViewModel = AuthViewModel()
+) {
     val context = LocalContext.current
 
     val password by viewModel.password.observeAsState(initial = "")
@@ -58,8 +60,8 @@ fun SingUpScreen(viewModel: AuthViewModel = AuthViewModel()) {
         username.isNotEmpty() && password.isNotEmpty() && confirmedPassword.isNotEmpty() && isValid && samePassword
 
     SingUpTemplate(
-        onArrowClick = { Toast.makeText(context, "Arrow Clicked", Toast.LENGTH_SHORT).show() },
-        onTextClick = { Toast.makeText(context, "Text Clicked", Toast.LENGTH_SHORT).show() },
+        onArrowClick = { navController.popBackStack() },
+        onTextClick = { navController.navigate("Login") },
         onSubmitClick = { Toast.makeText(context, "Submit Clicked", Toast.LENGTH_SHORT).show() },
         subWelcomeText = "Ingresa tus datos",
         textIndicator = null,
@@ -92,10 +94,10 @@ fun SingUpScreen(viewModel: AuthViewModel = AuthViewModel()) {
     )
 }
 
-@Preview
-@Composable
-fun SingUpScreenPreview() {
-    TaskerTheme {
-        SingUpScreen()
-    }
-}
+//@Preview
+//@Composable
+//fun SingUpScreenPreview() {
+//    TaskerTheme {
+//        SingUpScreen()
+//    }
+//}
