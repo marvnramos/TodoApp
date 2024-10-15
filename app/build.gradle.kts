@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -21,11 +22,6 @@ android {
 
         buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8080/\"")
     }
-
-    buildFeatures {
-        buildConfig = true
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -43,8 +39,10 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
@@ -69,6 +67,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.security.crypto.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,6 +75,12 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Firebase dependencies
+    implementation(platform("com.google.firebase:firebase-bom:32.0.0"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-storage-ktx")
+
 
     // Jetpack Navigation Components
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.2")
@@ -92,5 +97,5 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.5.0")
 
     implementation("io.coil-kt:coil-compose:2.1.0")
-
+    implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
 }
