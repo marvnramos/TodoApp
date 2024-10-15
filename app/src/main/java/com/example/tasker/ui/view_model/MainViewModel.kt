@@ -1,8 +1,38 @@
 package com.example.tasker.ui.view_model
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import android.content.SharedPreferences
+import androidx.lifecycle.AndroidViewModel
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 
-class MainViewModel: ViewModel() {
-    private val bearer_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJqd3QtYXVkaWVuY2UiLCJpc3MiOiJ5b3VyLWRvbWFpbi5jb20iLCJ1c2VySWQiOiJjN2VmM2YzYS1mYjYxLTQxMzEtYmI0My1mNjk0YTZlZWU0NzAiLCJleHAiOjE3MTU5NzE2ODB9.ZgOybuoeFh0y2Gp75lB3LQHq9l_6y0zyY8Gz3uCn4FM"
+class MainViewModel(application: Application) : AndroidViewModel(application) {
+    private val sharedPreferences: SharedPreferences by lazy {
+        val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+        EncryptedSharedPreferences.create(
+            "secure_prefs",
+            masterKeyAlias,
+            getApplication(),
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+    }
 
+    fun saveAccessToken(token: String) {
+        with(sharedPreferences.edit()) {
+            putString("access_token", token)
+            apply()
+        }
+    }
+
+    fun getAccessToken(): String? {
+        return sharedPreferences.getString("access_token", null)
+    }
+
+    fun clearTokens() {
+        with(sharedPreferences.edit()) {
+            remove("access_token")
+            apply()
+        }
+    }
 }
