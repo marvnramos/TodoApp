@@ -1,10 +1,7 @@
 package com.example.tasker.ui.view
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
@@ -13,34 +10,41 @@ import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.screens.AuthScreen
 import com.example.tasker.ui.view.screens.EmailScreen
 import com.example.tasker.ui.view.screens.SignUpEmailScreen
+import com.example.tasker.ui.view.screens.SingUpScreen
 import com.example.tasker.ui.view.screens.SingUpTokenScreen
 import com.example.tasker.ui.view.theme.TaskerTheme
+
+object Routes {
+    const val LOGIN = "Login"
+    const val EMAIL_FORGOT_PASSWORD_FLOW = "EmailForgotPasswordFlow"
+    const val EMAIL_SIGN_UP_FLOW = "EmailSignUpFlow"
+    const val TOKEN_SIGN_UP_FLOW = "TokenSignUpFlow"
+    const val SIGN_UP = "SignUp"
+}
 
 @Composable
 fun AuthView() {
     val navController = rememberNavController()
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+
+    NavHost(
+        navController = navController,
+        startDestination = Routes.LOGIN,
+        modifier = Modifier.fillMaxSize()
     ) {
-        NavHost(
-            navController = navController,
-            startDestination = "Login",
-            modifier = Modifier.weight(1f)
-        ) {
-            composable("Login") {
-                AuthScreen(navController)
-            }
-            composable("EmailForgotPasswordFlow") {
-                EmailScreen(navController)
-            }
-            composable("EmailSignUpFlow") {
-                SignUpEmailScreen(navController)
-            }
-            composable("TokenSignUpFlow") {
-                SingUpTokenScreen(navController)
-            }
+        composable(Routes.LOGIN) {
+            AuthScreen(navController)
+        }
+        composable(Routes.EMAIL_FORGOT_PASSWORD_FLOW) {
+            EmailScreen(navController)
+        }
+        composable(Routes.EMAIL_SIGN_UP_FLOW) {
+            SignUpEmailScreen(navController)
+        }
+        composable(Routes.TOKEN_SIGN_UP_FLOW) {
+            SingUpTokenScreen(navController)
+        }
+        composable(Routes.SIGN_UP) {
+            SingUpScreen(navController)
         }
     }
 }
