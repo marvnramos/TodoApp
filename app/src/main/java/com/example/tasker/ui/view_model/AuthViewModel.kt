@@ -40,7 +40,7 @@ class AuthViewModel : ViewModel() {
         if (token.isNotEmpty()) {
             return token.length == 6 && token.isValidNumber()
         }
-        return true
+        return false
     }
 
     fun isEmailValid(email: MutableLiveData<String>): Boolean {
