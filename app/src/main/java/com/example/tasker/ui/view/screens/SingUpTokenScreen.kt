@@ -26,7 +26,7 @@ fun SingUpTokenScreen(
     SingUpTemplate(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.navigate("Login") },
-        onSubmitClick = { Toast.makeText(context, "Submit Clicked", Toast.LENGTH_SHORT).show() },
+        onSubmitClick = { pushToSingUPScreen(navController) },
         subWelcomeText = "Verificación de correo",
         textIndicator = "Ingresa el código que recibiste \nen tu correo electrónico",
         submitText = "Verificar",
@@ -41,6 +41,10 @@ fun SingUpTokenScreen(
             }
         }
     )
+}
+
+private fun pushToSingUPScreen(navController: NavHostController) {
+    navController.navigate("SingUp")
 }
 
 @Preview
