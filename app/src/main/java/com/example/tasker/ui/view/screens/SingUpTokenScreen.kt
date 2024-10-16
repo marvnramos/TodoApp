@@ -8,6 +8,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.tasker.ui.view.Routes
 import com.example.tasker.ui.view.components.TokenTextField
 import com.example.tasker.ui.view.theme.TaskerTheme
 import com.example.tasker.ui.view_model.AuthViewModel
@@ -44,7 +45,7 @@ fun SingUpTokenScreen(
 }
 
 private fun pushToSingUPScreen(navController: NavHostController) {
-    navController.navigate("SingUp")
+    navController.navigate(Routes.SIGN_UP)
 }
 
 @Preview
