@@ -1,5 +1,6 @@
 package com.example.tasker.ui.view
 
+import com.example.tasker.ui.view.screens.SingUpScreen
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -10,7 +11,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.screens.AuthScreen
 import com.example.tasker.ui.view.screens.EmailScreen
 import com.example.tasker.ui.view.screens.SignUpEmailScreen
-import com.example.tasker.ui.view.screens.SingUpScreen
 import com.example.tasker.ui.view.screens.SingUpTokenScreen
 import com.example.tasker.ui.view.theme.TaskerTheme
 
