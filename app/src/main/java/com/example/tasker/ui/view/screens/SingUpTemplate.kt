@@ -42,6 +42,8 @@ fun SingUpTemplate(
     isAvailable: Boolean,
     textFieldComponent: @Composable () -> Unit,
     addPhotoButtonEnable: Boolean = false,
+    onClickPhoto: (() -> Unit)? = null,
+    imageUri: String? = null
 ) {
     Scaffold(
         topBar = {
@@ -76,7 +78,9 @@ fun SingUpTemplate(
                 WelcomeText(
                     text = subWelcomeText,
                     addPhotoButtonEnable = addPhotoButtonEnable,
-                    title = if (title.isNullOrEmpty()) "¡Bienvenido!" else title
+                    title = if (title.isNullOrEmpty()) "¡Bienvenido!" else title,
+                    onClickPhoto = { onClickPhoto?.let { it() } },
+                    imageUri = imageUri
                 )
                 textIndicator?.let {
                     Text(
