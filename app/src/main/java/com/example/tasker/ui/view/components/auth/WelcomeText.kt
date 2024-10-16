@@ -22,7 +22,9 @@ import com.example.tasker.R
 fun WelcomeText(
     text: String,
     title: String? = "¡Bienvenido!",
-    addPhotoButtonEnable: Boolean = false
+    addPhotoButtonEnable: Boolean = false,
+    onClickPhoto: (() -> Unit)? = null,
+    imageUri: String? = null
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
@@ -52,8 +54,10 @@ fun WelcomeText(
                 )
                 return
             }
-            AddPhotoButton {
-                Log.d("AddPhotoButton", "AddPhotoButton clicked uwu")
+            AddPhotoButton(
+                imageUri = imageUri
+            ) {
+                onClickPhoto?.let { it() }
             }
         }
     }
