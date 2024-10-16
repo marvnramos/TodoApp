@@ -19,7 +19,7 @@ object Routes {
     const val EMAIL_FORGOT_PASSWORD_FLOW = "EmailForgotPasswordFlow"
     const val EMAIL_SIGN_UP_FLOW = "EmailSignUpFlow"
     const val TOKEN_SIGN_UP_FLOW = "TokenSignUpFlow"
-    const val SIGN_UP = "SignUp"
+    const val SIGN_UP = "SingUp"
 }
 
 @Composable
