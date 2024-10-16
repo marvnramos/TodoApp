@@ -1,15 +1,10 @@
 package com.example.tasker.ui.view.components.auth
 
-import android.util.Log
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -22,22 +17,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.tasker.ui.view.theme.TaskerTheme
-import coil.compose.rememberImagePainter
-
-import androidx.compose.runtime.*
-import androidx.compose.ui.draw.scale
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.spring
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddPhotoButton(onClick: () -> Unit) {
+fun AddPhotoButton(
+    imageUri: String? = null,
+    onClick: () -> Unit
+) {
     Card(
         onClick = { onClick() },
         modifier = Modifier.size(175.dp),
@@ -52,18 +43,23 @@ fun AddPhotoButton(onClick: () -> Unit) {
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-//            Image(
-//                painter = rememberAsyncImagePainter("https://www.pipsticks.com/cdn/shop/files/20240422094615_E9664F97.png?v=1713822329"),
-//                contentDescription = "",
-//                contentScale = ContentScale.Crop,
-//            )
-            Icon(
-                imageVector = Icons.Default.AddAPhoto,
-                contentDescription = "Add photo button",
-                tint = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.size(50.dp)
-            )
+            if (imageUri == null) {
+                Icon(
+                    imageVector = Icons.Default.AddAPhoto,
+                    contentDescription = "Add photo button",
+                    tint = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.size(50.dp)
+                )
+            } else {
+                Image(
+                    painter = rememberAsyncImagePainter(imageUri),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.size(175.dp)
+                )
+            }
         }
+
     }
 }
 
