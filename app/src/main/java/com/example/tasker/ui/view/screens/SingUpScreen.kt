@@ -7,13 +7,12 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -26,6 +25,8 @@ import com.example.tasker.ui.view_model.AuthViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 @Composable
 fun SingUpScreen(
@@ -33,6 +34,7 @@ fun SingUpScreen(
     viewModel: AuthViewModel = AuthViewModel()
 ) {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
 
     val password by viewModel.password.observeAsState(initial = "")
     var comparePasswordErrorMessages by remember { mutableStateOf<List<String>>(emptyList()) }
@@ -78,7 +80,14 @@ fun SingUpScreen(
     SingUpTemplate(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.navigate("Login") },
-        onSubmitClick = { Toast.makeText(context, "Submit Clicked", Toast.LENGTH_SHORT).show() },
+        onSubmitClick = {
+            imageUri?.let {
+                scope.launch {
+                    val downloadUrl = uploadImageToFirebase(it)
+                    Log.d("Firebase", "Download URL: $downloadUrl")
+                }
+            } ?: Toast.makeText(context, "No image selected", Toast.LENGTH_SHORT).show()
+        },
         subWelcomeText = "Ingresa tus datos",
         textIndicator = null,
         submitText = "Registrarse",
@@ -105,70 +114,30 @@ fun SingUpScreen(
                 errorMessages = comparePasswordErrorMessages,
                 onTextChanged = { viewModel.onValueChanged(confirmedPassword = it) }
             )
-
-            Button(onClick = {
-                val response = uploadImageToFirebase(imageUri!!)
-                println("AAAAAAAAAAAAAAAAAA")
-                println(response)
-            }) {
-                Text(text = "firebase test")
-            }
         },
         addPhotoButtonEnable = true,
-        onClickPhoto = {
-            launcher.launch("image/*")
-            println("Image URI: $imageUri")
-        },
-        imageUri = imageUri.toString()
+        onClickPhoto = { launcher.launch("image/*") },
+        imageUri = imageUri?.toString() ?: ""
     )
 }
 
-private fun uploadImageToFirebase(uri: Uri): String? {
-    val user = FirebaseAuth.getInstance().currentUser
-    var downloadUrl: String? = null
-    if (user == null) {
-        FirebaseAuth.getInstance().signInAnonymously()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val user = FirebaseAuth.getInstance().currentUser
-                    uploadImageToFirebase(uri)
-                } else {
-                    Log.e("FirebaseAuth", "No se pudo autenticar anónimamente", task.exception)
-                }
-            }
+private suspend fun uploadImageToFirebase(uri: Uri): String {
+    FirebaseAuth.getInstance().currentUser
+        ?: FirebaseAuth.getInstance().signInAnonymously().await().user
 
-    } else {
-        downloadUrl = performUpload(uri)
-    }
-    return downloadUrl
+    return performUpload(uri)
 }
 
-private fun performUpload(uri: Uri): String? {
+private suspend fun performUpload(uri: Uri): String {
     val storageRef = Firebase.storage.reference
     val imagesRef = storageRef.child("profiles/${System.currentTimeMillis()}.jpg")
 
-    var downloadUrl: String? = null
-
-    val uploadTask = imagesRef.putFile(uri)
-    uploadTask.addOnSuccessListener {
-        imagesRef.downloadUrl.addOnSuccessListener { uri ->
-            downloadUrl = uri.toString()
-            Log.d("Firebase", "Download URL: $downloadUrl")
-        }.addOnFailureListener { exception ->
-            Log.e("Firebase", "Failed to get download URL", exception)
-        }
-    }.addOnFailureListener { exception ->
-        Log.e("Firebase", "Upload failed", exception)
+    return try {
+        imagesRef.putFile(uri).await()
+        val downloadUrl = imagesRef.downloadUrl.await()
+        downloadUrl.toString()
+    } catch (e: Exception) {
+        Log.e("Firebase", "Upload failed", e)
+        "No se pudo subir la imagen"
     }
-
-    return downloadUrl
 }
-
-
-//@Preview
-//@Composable
-//fun SingUpScreenPreview() {
-//    TaskerTheme {
-//        SingUpScreen()
-//    }
-//}
