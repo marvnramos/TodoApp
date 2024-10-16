@@ -17,9 +17,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImagePainter.State.Empty.painter
 import coil.compose.rememberAsyncImagePainter
 import com.example.tasker.ui.view.theme.TaskerTheme
 
@@ -30,7 +32,7 @@ fun AddPhotoButton(
     onClick: () -> Unit
 ) {
     Card(
-        onClick = { onClick() },
+        onClick = onClick,
         modifier = Modifier.size(175.dp),
         elevation = CardDefaults.elevatedCardElevation(2.dp),
         colors = CardDefaults.cardColors(
@@ -43,19 +45,21 @@ fun AddPhotoButton(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            if (imageUri == null) {
-                Icon(
-                    imageVector = Icons.Default.AddAPhoto,
-                    contentDescription = "Add photo button",
-                    tint = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.size(50.dp)
-                )
-            } else {
+            Icon(
+                imageVector = Icons.Default.AddAPhoto,
+                contentDescription = "Add photo",
+                tint = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.size(50.dp)
+            )
+            println("imageUri: $imageUri")
+            if (imageUri != null) {
                 Image(
-                    painter = rememberAsyncImagePainter(imageUri),
-                    contentDescription = null,
+                    painter = rememberAsyncImagePainter(model = imageUri),
+                    contentDescription = "Selected photo",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(175.dp)
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(CircleShape)
                 )
             }
         }
