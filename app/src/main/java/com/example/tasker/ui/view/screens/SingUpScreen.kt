@@ -77,7 +77,7 @@ fun SingUpScreen(
     val isAvailable =
         username.isNotEmpty() && password.isNotEmpty() && confirmedPassword.isNotEmpty() && isValid && samePassword
 
-    SingUpTemplate(
+    Template(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.navigate("Login") },
         onSubmitClick = {
