@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.auth.components
+package com.example.tasker.ui.auth.components
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
@@ -29,7 +29,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
-import com.example.tasker.ui.view_model.AuthViewModel
+import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 
 @Preview
 @Composable

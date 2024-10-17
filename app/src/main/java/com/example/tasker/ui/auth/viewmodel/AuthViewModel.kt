@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.auth.viewmodel
+package com.example.tasker.ui.auth.viewmodel
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData

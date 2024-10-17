@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.auth
+package com.example.tasker.ui.auth.view
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -10,7 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.Routes
 import com.example.tasker.ui.view.commons.components.TokenTextField
 import com.example.tasker.ui.view.theme.TaskerTheme
-import com.example.tasker.ui.view.auth.viewmodel.AuthViewModel
+import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 import com.example.tasker.ui.view.commons.TemplateView
 
 @Composable

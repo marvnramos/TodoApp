@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.auth.components
+package com.example.tasker.ui.auth.components
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button

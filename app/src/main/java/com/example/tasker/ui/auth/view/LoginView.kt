@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.auth
+package com.example.tasker.ui.auth.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,12 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.example.tasker.ui.view.auth.components.LabelClickable
-import com.example.tasker.ui.view.auth.components.PasswordTextField
-import com.example.tasker.ui.view.auth.components.SubmitButton
-import com.example.tasker.ui.view.auth.components.UsernameTextField
-import com.example.tasker.ui.view.auth.components.WelcomeText
-import com.example.tasker.ui.view.auth.viewmodel.AuthViewModel
+import com.example.tasker.ui.auth.components.LabelClickable
+import com.example.tasker.ui.auth.components.PasswordTextField
+import com.example.tasker.ui.auth.components.SubmitButton
+import com.example.tasker.ui.auth.components.UsernameTextField
+import com.example.tasker.ui.auth.components.WelcomeText
+import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 
 @Composable
 fun LoginView(
