@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.auth
+package com.example.tasker.ui.auth.view
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
@@ -7,8 +7,8 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavHostController
-import com.example.tasker.ui.view.auth.components.EmailTextField
-import com.example.tasker.ui.view.auth.viewmodel.AuthViewModel
+import com.example.tasker.ui.auth.components.EmailTextField
+import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 import com.example.tasker.ui.view.commons.TemplateView
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

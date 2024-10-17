@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.auth
+package com.example.tasker.ui.auth.view
 
 import android.net.Uri
 import android.util.Log
@@ -19,9 +19,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavHostController
-import com.example.tasker.ui.view.auth.components.PasswordTextField
-import com.example.tasker.ui.view.auth.components.UsernameTextField
-import com.example.tasker.ui.view.auth.viewmodel.AuthViewModel
+import com.example.tasker.ui.auth.components.PasswordTextField
+import com.example.tasker.ui.auth.components.UsernameTextField
+import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 import com.example.tasker.ui.view.commons.TemplateView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
