@@ -31,7 +31,7 @@ import com.example.tasker.ui.view.components.auth.WelcomeText
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun SingUpTemplate(
+fun Template(
     onArrowClick: () -> Unit,
     onTextClick: () -> Unit,
     onSubmitClick: () -> Unit,
@@ -43,7 +43,8 @@ fun SingUpTemplate(
     textFieldComponent: @Composable () -> Unit,
     addPhotoButtonEnable: Boolean = false,
     onClickPhoto: (() -> Unit)? = null,
-    imageUri: String? = null
+    imageUri: String? = null,
+    loginAvailable: Boolean = true
 ) {
     Scaffold(
         topBar = {
@@ -104,14 +105,16 @@ fun SingUpTemplate(
                 Spacer(modifier = Modifier.height(25.dp))
             }
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                LabelClickable(
-                    question = "¿Ya tienes una cuenta?",
-                    action = "Inicia sesión",
-                    onClick = { onTextClick() }
-                )
+            if (loginAvailable) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    LabelClickable(
+                        question = "¿Ya tienes una cuenta?",
+                        action = "Inicia sesión",
+                        onClick = { onTextClick() }
+                    )
+                }
             }
         }
     }
