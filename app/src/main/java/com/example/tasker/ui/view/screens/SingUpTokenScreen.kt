@@ -1,6 +1,5 @@
 package com.example.tasker.ui.view.screens
 
-import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -24,7 +23,7 @@ fun SingUpTokenScreen(
     val isAvailable = token.isNotEmpty() && isValidToken
 
     val context = LocalContext.current
-    SingUpTemplate(
+    Template(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.navigate("Login") },
         onSubmitClick = { pushToSingUPScreen(navController) },
