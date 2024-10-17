@@ -1,6 +1,6 @@
 package com.example.tasker.ui.view
 
-import com.example.tasker.ui.view.screens.SingUpScreen
+import com.example.tasker.ui.auth.view.SingUpView
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -8,12 +8,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.tasker.ui.view.screens.AuthScreen
-import com.example.tasker.ui.view.screens.EmailScreen
-import com.example.tasker.ui.view.screens.ForgotPasswordScreen
-import com.example.tasker.ui.view.screens.SignUpEmailScreen
-import com.example.tasker.ui.view.screens.SingUpTokenScreen
-import com.example.tasker.ui.view.screens.TokenScreen
+import com.example.tasker.ui.auth.view.LoginView
+import com.example.tasker.ui.forgotpassword.view.EmailView
+import com.example.tasker.ui.auth.view.EmailView as EmailAuthView
+import com.example.tasker.ui.forgotpassword.view.PasswordRecoveryView
+import com.example.tasker.ui.forgotpassword.view.TokenView
+import com.example.tasker.ui.auth.view.TokenView as TokenAuthView
 import com.example.tasker.ui.view.theme.TaskerTheme
 
 object Routes {
@@ -36,25 +36,25 @@ fun AuthView() {
         modifier = Modifier.fillMaxSize()
     ) {
         composable(Routes.LOGIN) {
-            AuthScreen(navController)
+            LoginView(navController)
         }
         composable(Routes.EMAIL_FORGOT_PASSWORD_FLOW) {
-            EmailScreen(navController)
+            EmailView(navController)
         }
         composable(Routes.EMAIL_SIGN_UP_FLOW) {
-            SignUpEmailScreen(navController)
+            EmailAuthView(navController)
         }
         composable(Routes.TOKEN_SIGN_UP_FLOW) {
-            SingUpTokenScreen(navController)
+            TokenAuthView(navController)
         }
         composable(Routes.SIGN_UP) {
-            SingUpScreen(navController)
+            SingUpView(navController)
         }
         composable(Routes.TOKEN_FORGOT_PASSWORD_FLOW) {
-            TokenScreen(navController)
+            TokenView(navController)
         }
         composable(Routes.FORGOT_PASSWORD) {
-            ForgotPasswordScreen(navController)
+            PasswordRecoveryView(navController)
         }
     }
 }
