@@ -1,4 +1,4 @@
-package com.example.tasker.ui.viewmodel
+package com.example.tasker.ui
 
 import android.app.Application
 import android.content.SharedPreferences

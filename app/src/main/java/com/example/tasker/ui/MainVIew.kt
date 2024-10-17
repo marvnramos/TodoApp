@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view
+package com.example.tasker.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
