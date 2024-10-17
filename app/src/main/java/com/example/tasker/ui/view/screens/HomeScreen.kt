@@ -13,9 +13,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tasker.data.models.Status
-import com.example.tasker.ui.view.components.home.AddButtonComponent
-import com.example.tasker.ui.view.components.home.CardComponent
-import com.example.tasker.ui.view.components.home.ToolBarComponent
+import com.example.tasker.ui.home.components.AddButtonComponent
+import com.example.tasker.ui.home.components.CardComponent
+import com.example.tasker.ui.home.components.ToolBarComponent
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Preview
