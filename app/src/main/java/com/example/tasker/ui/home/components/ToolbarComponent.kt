@@ -10,7 +10,8 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.MoreVert
+import androidx.compose.material.icons.rounded.FilterAlt
+import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -20,27 +21,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat
-import com.example.tasker.R
-import com.example.tasker.ui.theme.TaskerTheme
-import androidx.compose.material.icons.rounded.Notifications
-import androidx.compose.material.icons.rounded.FilterAlt
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.PopupProperties
-import com.example.tasker.ui.theme.Blue
-import com.example.tasker.ui.theme.Red
+import androidx.compose.ui.unit.sp
+import com.example.tasker.ui.theme.TaskerTheme
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -99,7 +90,7 @@ fun ToolBarComponent() {
                         modifier = Modifier.background(
                             MaterialTheme.colorScheme.surface
                         ).width(200.dp),
-                        offset = DpOffset(x = 5.dp, y = 5.dp),
+                        offset = DpOffset(x = 5.dp, y = 0.dp),
                     ) {
                         DropdownMenuItem(
                             text = { Text(text = "Por hacer") },
