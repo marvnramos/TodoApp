@@ -12,12 +12,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.Routes
-import com.example.tasker.ui.view.components.auth.PasswordTextField
+import com.example.tasker.ui.auth.components.PasswordTextField
 import com.example.tasker.ui.view.theme.TaskerTheme
-import com.example.tasker.ui.view_model.AuthViewModel
+import com.example.tasker.ui.auth.viewmodel.AuthViewModel
+import com.example.tasker.ui.commons.TemplateView
 
 @Composable
-fun ForgotPasswordScreen(
+fun PasswordRecoveryView(
     navController: NavHostController,
     authVM: AuthViewModel = AuthViewModel()
 ) {
@@ -59,7 +60,7 @@ fun ForgotPasswordScreen(
         confirmedPassword = confirmedPassword,
         navController = navController
     )
-    Template(
+    TemplateView(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.popBackStack() },
         onSubmitClick = { submitNewPassword(command) },
@@ -95,7 +96,7 @@ fun ForgotPasswordScreen(
 @Composable
 fun ForgotPasswordScreenPreview() {
     TaskerTheme {
-        ForgotPasswordScreen(navController = rememberNavController())
+        PasswordRecoveryView(navController = rememberNavController())
     }
 }
 

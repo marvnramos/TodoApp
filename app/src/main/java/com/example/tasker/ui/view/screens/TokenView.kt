@@ -7,20 +7,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.Routes
-import com.example.tasker.ui.view.components.TokenTextField
+import com.example.tasker.ui.commons.components.TokenTextField
 import com.example.tasker.ui.view.theme.TaskerTheme
-import com.example.tasker.ui.view_model.AuthViewModel
+import com.example.tasker.ui.auth.viewmodel.AuthViewModel
+import com.example.tasker.ui.commons.TemplateView
 
 @Preview
 @Composable
 fun TokenScreenPreview() {
     TaskerTheme {
-        TokenScreen(navController = rememberNavController())
+        TokenView(navController = rememberNavController())
     }
 }
 
 @Composable
-fun TokenScreen(
+fun TokenView(
     navController: NavHostController,
     authVM: AuthViewModel = AuthViewModel()
 ) {
@@ -29,7 +30,7 @@ fun TokenScreen(
     val isValidToken = authVM.isTokenValid(token)
     val isAvailable = token.isNotEmpty() && isValidToken
 
-    Template(
+    TemplateView(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.popBackStack() },
         onSubmitClick = { pushToForgotPasswordScreen(navController) },

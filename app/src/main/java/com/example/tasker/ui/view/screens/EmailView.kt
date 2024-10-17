@@ -8,12 +8,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.Routes
-import com.example.tasker.ui.view.components.auth.EmailTextField
+import com.example.tasker.ui.auth.components.EmailTextField
 import com.example.tasker.ui.view.theme.TaskerTheme
-import com.example.tasker.ui.view_model.AuthViewModel
+import com.example.tasker.ui.auth.viewmodel.AuthViewModel
+import com.example.tasker.ui.commons.TemplateView
 
 @Composable
-fun EmailScreen(
+fun EmailView(
     navController: NavHostController,
     authVM: AuthViewModel = AuthViewModel()
 ) {
@@ -24,7 +25,7 @@ fun EmailScreen(
     val errorMessage = if (!isValidEmail) "Dirección de correo inválida" else null
     val isError = errorMessage != null
     val isAvailable = email.isNotEmpty() && !isError
-    Template(
+    TemplateView(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.popBackStack() },
         onSubmitClick = { pushToTokenScreen(navController) },
@@ -49,7 +50,7 @@ fun EmailScreen(
 @Composable
 fun EmailScreenPreview() {
     TaskerTheme {
-        EmailScreen(navController = rememberNavController())
+        EmailView(navController = rememberNavController())
     }
 }
 
