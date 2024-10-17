@@ -1,7 +1,6 @@
 package com.example.tasker.ui.view.screens
 
 import android.annotation.SuppressLint
-import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -26,7 +25,7 @@ fun SignUpEmailScreen(
     val isError = errorMessage != null
     val isAvailable = email.isNotEmpty() && !isError
     val context = LocalContext.current
-    SingUpTemplate(
+    Template(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.popBackStack() },
         onSubmitClick = { pushToTokenScreen(navController) },
@@ -50,11 +49,3 @@ private fun pushToTokenScreen(navController: NavHostController) {
     // TODO: Send token to email from server
     navController.navigate("TokenSignUpFlow")
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun SignUpScreenPreview() {
-//    TaskerTheme {
-//        SignUpEmailScreen()
-//    }
-//}
