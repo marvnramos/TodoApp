@@ -22,7 +22,7 @@ import androidx.navigation.NavHostController
 import com.example.tasker.ui.auth.components.PasswordTextField
 import com.example.tasker.ui.auth.components.UsernameTextField
 import com.example.tasker.ui.auth.viewmodel.AuthViewModel
-import com.example.tasker.ui.view.commons.TemplateView
+import com.example.tasker.ui.commons.TemplateView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage

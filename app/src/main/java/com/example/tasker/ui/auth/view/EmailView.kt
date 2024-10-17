@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavHostController
 import com.example.tasker.ui.auth.components.EmailTextField
 import com.example.tasker.ui.auth.viewmodel.AuthViewModel
-import com.example.tasker.ui.view.commons.TemplateView
+import com.example.tasker.ui.commons.TemplateView
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
