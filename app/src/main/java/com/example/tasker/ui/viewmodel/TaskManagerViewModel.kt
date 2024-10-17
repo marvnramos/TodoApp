@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view_model
+package com.example.tasker.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
