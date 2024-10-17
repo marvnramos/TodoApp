@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.Routes
-import com.example.tasker.ui.auth.components.EmailTextField
+import com.example.tasker.ui.commons.components.EmailTextField
 import com.example.tasker.ui.theme.TaskerTheme
 import com.example.tasker.ui.commons.TemplateView
 import com.example.tasker.ui.forgotpassword.viewmodel.ForgotPasswordViewModel

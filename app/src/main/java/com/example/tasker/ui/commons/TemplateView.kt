@@ -24,9 +24,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.style.TextAlign
-import com.example.tasker.ui.auth.components.LabelClickable
-import com.example.tasker.ui.auth.components.SubmitButton
-import com.example.tasker.ui.auth.components.WelcomeText
+import com.example.tasker.ui.commons.components.LabelClickable
+import com.example.tasker.ui.commons.components.SubmitButton
+import com.example.tasker.ui.commons.components.WelcomeText
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

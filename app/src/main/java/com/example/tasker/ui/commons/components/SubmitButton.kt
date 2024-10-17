@@ -1,4 +1,4 @@
-package com.example.tasker.ui.auth.components
+package com.example.tasker.ui.commons.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row

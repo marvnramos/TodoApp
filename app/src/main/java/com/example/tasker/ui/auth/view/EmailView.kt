@@ -7,7 +7,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavHostController
-import com.example.tasker.ui.auth.components.EmailTextField
+import com.example.tasker.ui.commons.components.EmailTextField
 import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 import com.example.tasker.ui.commons.TemplateView
 

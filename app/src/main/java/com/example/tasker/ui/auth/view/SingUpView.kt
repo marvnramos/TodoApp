@@ -19,7 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavHostController
-import com.example.tasker.ui.auth.components.PasswordTextField
+import com.example.tasker.ui.commons.components.PasswordTextField
 import com.example.tasker.ui.auth.components.UsernameTextField
 import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 import com.example.tasker.ui.commons.TemplateView

@@ -15,11 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.example.tasker.ui.auth.components.LabelClickable
-import com.example.tasker.ui.auth.components.PasswordTextField
-import com.example.tasker.ui.auth.components.SubmitButton
+import com.example.tasker.ui.commons.components.LabelClickable
+import com.example.tasker.ui.commons.components.PasswordTextField
+import com.example.tasker.ui.commons.components.SubmitButton
 import com.example.tasker.ui.auth.components.UsernameTextField
-import com.example.tasker.ui.auth.components.WelcomeText
+import com.example.tasker.ui.commons.components.WelcomeText
 import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 
 @Composable
