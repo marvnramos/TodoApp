@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.components.auth
+package com.example.tasker.ui.view.auth.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

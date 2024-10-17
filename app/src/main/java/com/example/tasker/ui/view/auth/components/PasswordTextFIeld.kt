@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.components.auth
+package com.example.tasker.ui.view.auth.components
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column

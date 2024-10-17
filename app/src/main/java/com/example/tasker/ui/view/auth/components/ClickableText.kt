@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.components.auth
+package com.example.tasker.ui.view.auth.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.MaterialTheme
