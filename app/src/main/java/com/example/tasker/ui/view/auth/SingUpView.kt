@@ -22,7 +22,7 @@ import androidx.navigation.NavHostController
 import com.example.tasker.ui.view.auth.components.PasswordTextField
 import com.example.tasker.ui.view.auth.components.UsernameTextField
 import com.example.tasker.ui.view.auth.viewmodel.AuthViewModel
-import com.example.tasker.ui.view.screens.Template
+import com.example.tasker.ui.view.commons.TemplateView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -78,7 +78,7 @@ fun SingUpView(
     val isAvailable =
         username.isNotEmpty() && password.isNotEmpty() && confirmedPassword.isNotEmpty() && isValid && samePassword
 
-    Template(
+    TemplateView(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.navigate("Login") },
         onSubmitClick = {

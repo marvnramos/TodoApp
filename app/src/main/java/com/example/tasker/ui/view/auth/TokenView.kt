@@ -11,7 +11,7 @@ import com.example.tasker.ui.view.Routes
 import com.example.tasker.ui.view.commons.components.TokenTextField
 import com.example.tasker.ui.view.theme.TaskerTheme
 import com.example.tasker.ui.view.auth.viewmodel.AuthViewModel
-import com.example.tasker.ui.view.screens.Template
+import com.example.tasker.ui.view.commons.TemplateView
 
 @Composable
 fun TokenView(
@@ -24,7 +24,7 @@ fun TokenView(
     val isAvailable = token.isNotEmpty() && isValidToken
 
     val context = LocalContext.current
-    Template(
+    TemplateView(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.navigate("Login") },
         onSubmitClick = { pushToSingUPScreen(navController) },

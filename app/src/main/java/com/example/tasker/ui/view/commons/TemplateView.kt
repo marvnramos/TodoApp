@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.screens
+package com.example.tasker.ui.view.commons
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -24,14 +24,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.style.TextAlign
-import com.example.tasker.ui.view.components.auth.LabelClickable
-import com.example.tasker.ui.view.components.auth.SubmitButton
-import com.example.tasker.ui.view.components.auth.WelcomeText
+import com.example.tasker.ui.view.auth.components.LabelClickable
+import com.example.tasker.ui.view.auth.components.SubmitButton
+import com.example.tasker.ui.view.auth.components.WelcomeText
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun Template(
+fun TemplateView(
     onArrowClick: () -> Unit,
     onTextClick: () -> Unit,
     onSubmitClick: () -> Unit,

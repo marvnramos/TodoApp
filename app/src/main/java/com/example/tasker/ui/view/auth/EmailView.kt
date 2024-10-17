@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavHostController
 import com.example.tasker.ui.view.auth.components.EmailTextField
 import com.example.tasker.ui.view.auth.viewmodel.AuthViewModel
-import com.example.tasker.ui.view.screens.Template
+import com.example.tasker.ui.view.commons.TemplateView
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -26,7 +26,7 @@ fun EmailView(
     val isError = errorMessage != null
     val isAvailable = email.isNotEmpty() && !isError
     val context = LocalContext.current
-    Template(
+    TemplateView(
         onArrowClick = { navController.popBackStack() },
         onTextClick = { navController.popBackStack() },
         onSubmitClick = { pushToTokenScreen(navController) },
