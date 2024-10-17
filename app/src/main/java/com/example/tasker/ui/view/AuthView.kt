@@ -10,8 +10,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.screens.AuthScreen
 import com.example.tasker.ui.view.screens.EmailScreen
+import com.example.tasker.ui.view.screens.ForgotPasswordScreen
 import com.example.tasker.ui.view.screens.SignUpEmailScreen
 import com.example.tasker.ui.view.screens.SingUpTokenScreen
+import com.example.tasker.ui.view.screens.TokenScreen
 import com.example.tasker.ui.view.theme.TaskerTheme
 
 object Routes {
@@ -20,6 +22,8 @@ object Routes {
     const val EMAIL_SIGN_UP_FLOW = "EmailSignUpFlow"
     const val TOKEN_SIGN_UP_FLOW = "TokenSignUpFlow"
     const val SIGN_UP = "SingUp"
+    const val TOKEN_FORGOT_PASSWORD_FLOW = "TokenForgotPasswordFlow"
+    const val FORGOT_PASSWORD = "ForgotPassword"
 }
 
 @Composable
@@ -45,6 +49,12 @@ fun AuthView() {
         }
         composable(Routes.SIGN_UP) {
             SingUpScreen(navController)
+        }
+        composable(Routes.TOKEN_FORGOT_PASSWORD_FLOW) {
+            TokenScreen(navController)
+        }
+        composable(Routes.FORGOT_PASSWORD) {
+            ForgotPasswordScreen(navController)
         }
     }
 }
