@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.screens
+package com.example.tasker.ui.forgotpassword.view
 
 import android.widget.Toast
 import androidx.compose.runtime.Composable
