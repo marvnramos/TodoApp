@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.screens
+package com.example.tasker.ui.view.auth
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,15 +15,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.example.tasker.ui.view.components.auth.LabelClickable
-import com.example.tasker.ui.view.components.auth.PasswordTextField
-import com.example.tasker.ui.view.components.auth.SubmitButton
-import com.example.tasker.ui.view.components.auth.UsernameTextField
-import com.example.tasker.ui.view.components.auth.WelcomeText
-import com.example.tasker.ui.view_model.AuthViewModel
+import com.example.tasker.ui.view.auth.components.LabelClickable
+import com.example.tasker.ui.view.auth.components.PasswordTextField
+import com.example.tasker.ui.view.auth.components.SubmitButton
+import com.example.tasker.ui.view.auth.components.UsernameTextField
+import com.example.tasker.ui.view.auth.components.WelcomeText
+import com.example.tasker.ui.view.auth.viewmodel.AuthViewModel
 
 @Composable
-fun AuthScreen(
+fun LoginView(
     navController: NavHostController,
     authVM: AuthViewModel = AuthViewModel()
 ) {

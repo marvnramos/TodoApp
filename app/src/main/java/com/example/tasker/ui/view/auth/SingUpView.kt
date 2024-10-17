@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.screens
+package com.example.tasker.ui.view.auth
 
 import android.net.Uri
 import android.util.Log
@@ -19,9 +19,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavHostController
-import com.example.tasker.ui.view.components.auth.PasswordTextField
-import com.example.tasker.ui.view.components.auth.UsernameTextField
-import com.example.tasker.ui.view_model.AuthViewModel
+import com.example.tasker.ui.view.auth.components.PasswordTextField
+import com.example.tasker.ui.view.auth.components.UsernameTextField
+import com.example.tasker.ui.view.auth.viewmodel.AuthViewModel
+import com.example.tasker.ui.view.screens.Template
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -29,7 +30,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 @Composable
-fun SingUpScreen(
+fun SingUpView(
     navController: NavHostController,
     viewModel: AuthViewModel = AuthViewModel()
 ) {

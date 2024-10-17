@@ -1,4 +1,4 @@
-package com.example.tasker.ui.view.screens
+package com.example.tasker.ui.view.auth
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -8,12 +8,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.Routes
-import com.example.tasker.ui.view.components.TokenTextField
+import com.example.tasker.ui.view.commons.components.TokenTextField
 import com.example.tasker.ui.view.theme.TaskerTheme
-import com.example.tasker.ui.view_model.AuthViewModel
+import com.example.tasker.ui.view.auth.viewmodel.AuthViewModel
+import com.example.tasker.ui.view.screens.Template
 
 @Composable
-fun SingUpTokenScreen(
+fun TokenView(
     navController: NavHostController,
     authVM: AuthViewModel = AuthViewModel()
 ) {
@@ -52,6 +53,6 @@ private fun pushToSingUPScreen(navController: NavHostController) {
 fun SingUpTokenScreenPreview() {
     TaskerTheme {
         val navController = rememberNavController()
-        SingUpTokenScreen(navController)
+        TokenView(navController)
     }
 }
