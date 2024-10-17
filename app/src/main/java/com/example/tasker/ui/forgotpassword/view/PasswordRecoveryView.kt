@@ -14,21 +14,21 @@ import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.Routes
 import com.example.tasker.ui.auth.components.PasswordTextField
 import com.example.tasker.ui.theme.TaskerTheme
-import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 import com.example.tasker.ui.commons.TemplateView
+import com.example.tasker.ui.forgotpassword.viewmodel.ForgotPasswordViewModel
 
 @Composable
 fun PasswordRecoveryView(
     navController: NavHostController,
-    authVM: AuthViewModel = AuthViewModel()
+    viewModel: ForgotPasswordViewModel = ForgotPasswordViewModel()
 ) {
-    val password by authVM.password.observeAsState(initial = "")
-    val confirmedPassword by authVM.confirmedPassword.observeAsState(initial = "")
+    val password by viewModel.password.observeAsState(initial = "")
+    val confirmedPassword by viewModel.confirmedPassword.observeAsState(initial = "")
     var errorMessages by remember { mutableStateOf<List<String>>(emptyList()) }
     var comparePasswordErrorMessages by remember { mutableStateOf<List<String>>(emptyList()) }
 
     val isValid = if (password.isNotEmpty()) {
-        errorMessages = authVM.isPasswordValid(MutableLiveData(password))
+        errorMessages = viewModel.isPasswordValid(MutableLiveData(password))
         errorMessages.isEmpty()
     } else {
         errorMessages = emptyList()
@@ -36,7 +36,7 @@ fun PasswordRecoveryView(
     }
 
     val samePassword = if (confirmedPassword.isNotEmpty()) {
-        if (!authVM.comparePasswords(
+        if (!viewModel.comparePasswords(
                 MutableLiveData(password),
                 MutableLiveData(confirmedPassword)
             )
@@ -76,7 +76,7 @@ fun PasswordRecoveryView(
                 availableValidation = true,
                 isValid = isValid,
                 errorMessages = emptyList(),
-                onTextChanged = { authVM.onValueChanged(password = it) }
+                onTextChanged = { viewModel.onValueChanged(password = it) }
             )
 
             PasswordTextField(
@@ -85,7 +85,7 @@ fun PasswordRecoveryView(
                 availableValidation = true,
                 isValid = samePassword,
                 errorMessages = comparePasswordErrorMessages + errorMessages,
-                onTextChanged = { authVM.onValueChanged(confirmedPassword = it) }
+                onTextChanged = { viewModel.onValueChanged(confirmedPassword = it) }
             )
         },
         loginAvailable = false

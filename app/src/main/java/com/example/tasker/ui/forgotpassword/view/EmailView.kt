@@ -10,17 +10,17 @@ import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.Routes
 import com.example.tasker.ui.auth.components.EmailTextField
 import com.example.tasker.ui.theme.TaskerTheme
-import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 import com.example.tasker.ui.commons.TemplateView
+import com.example.tasker.ui.forgotpassword.viewmodel.ForgotPasswordViewModel
 
 @Composable
 fun EmailView(
     navController: NavHostController,
-    authVM: AuthViewModel = AuthViewModel()
+    viewModel: ForgotPasswordViewModel = ForgotPasswordViewModel()
 ) {
-    val email by authVM.email.observeAsState(initial = "")
+    val email by viewModel.email.observeAsState(initial = "")
     val isValidEmail =
-        if (email.isNotEmpty()) authVM.isEmailValid(MutableLiveData(email)) else true
+        if (email.isNotEmpty()) viewModel.isEmailValid(MutableLiveData(email)) else true
 
     val errorMessage = if (!isValidEmail) "Dirección de correo inválida" else null
     val isError = errorMessage != null
@@ -39,7 +39,7 @@ fun EmailView(
                 text = email,
                 isValid = isValidEmail,
                 errorMessage = errorMessage,
-                onTextChanged = { authVM.onValueChanged(email = it) }
+                onTextChanged = { viewModel.onValueChanged(email = it) }
             )
         },
         loginAvailable = false

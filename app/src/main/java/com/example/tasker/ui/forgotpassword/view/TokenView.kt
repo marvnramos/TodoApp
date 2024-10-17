@@ -9,8 +9,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.Routes
 import com.example.tasker.ui.commons.components.TokenTextField
 import com.example.tasker.ui.theme.TaskerTheme
-import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 import com.example.tasker.ui.commons.TemplateView
+import com.example.tasker.ui.forgotpassword.viewmodel.ForgotPasswordViewModel
 
 @Preview
 @Composable
@@ -23,11 +23,11 @@ fun TokenScreenPreview() {
 @Composable
 fun TokenView(
     navController: NavHostController,
-    authVM: AuthViewModel = AuthViewModel()
+    viewModel: ForgotPasswordViewModel = ForgotPasswordViewModel()
 ) {
-    val token by authVM.token.observeAsState(initial = "")
+    val token by viewModel.token.observeAsState(initial = "")
 
-    val isValidToken = authVM.isTokenValid(token)
+    val isValidToken = viewModel.isTokenValid(token)
     val isAvailable = token.isNotEmpty() && isValidToken
 
     TemplateView(
@@ -45,7 +45,7 @@ fun TokenView(
                 isValid = if (token.isNotEmpty()) isValidToken else true,
                 isError = token.isNotEmpty() && !isValidToken
             ) {
-                authVM.onValueChanged(token = it)
+                viewModel.onValueChanged(token = it)
             }
         },
         loginAvailable = false
