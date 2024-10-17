@@ -13,7 +13,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.tasker.ui.view.Routes
 import com.example.tasker.ui.auth.components.PasswordTextField
-import com.example.tasker.ui.view.theme.TaskerTheme
+import com.example.tasker.ui.theme.TaskerTheme
 import com.example.tasker.ui.auth.viewmodel.AuthViewModel
 import com.example.tasker.ui.commons.TemplateView
 

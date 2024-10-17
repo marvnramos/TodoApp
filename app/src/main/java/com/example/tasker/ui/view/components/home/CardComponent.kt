@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.example.tasker.R
 import com.example.tasker.data.models.Status
-import com.example.tasker.ui.view.theme.CardProperties
+import com.example.tasker.ui.theme.CardProperties
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,7 +49,7 @@ fun CardComponent(
                 statusIconColor = Color(ContextCompat.getColor(context, R.color.green)),
                 statusIcon = R.drawable.done_icon
             )
-            Status.TODO ->CardProperties(
+            Status.TODO -> CardProperties(
                 statusBackgroundColor = Color(ContextCompat.getColor(context, R.color.pink)),
                 statusIconColor = Color(ContextCompat.getColor(context, R.color.red)),
                 statusIcon = R.drawable.todo_icon

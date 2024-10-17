@@ -14,7 +14,7 @@ import com.example.tasker.ui.auth.view.EmailView as EmailAuthView
 import com.example.tasker.ui.forgotpassword.view.PasswordRecoveryView
 import com.example.tasker.ui.forgotpassword.view.TokenView
 import com.example.tasker.ui.auth.view.TokenView as TokenAuthView
-import com.example.tasker.ui.view.theme.TaskerTheme
+import com.example.tasker.ui.theme.TaskerTheme
 
 object Routes {
     const val LOGIN = "Login"

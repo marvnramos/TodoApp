@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tasker.data.models.Get
 import com.example.tasker.ui.view.screens.HomeScreen
-import com.example.tasker.ui.view.theme.TaskerTheme
+import com.example.tasker.ui.theme.TaskerTheme
 import retrofit2.Callback
 
 class MainActivity : ComponentActivity() {
