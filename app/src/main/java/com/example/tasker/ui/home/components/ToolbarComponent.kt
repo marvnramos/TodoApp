@@ -21,44 +21,51 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.tasker.ui.theme.Grey
 import com.example.tasker.ui.theme.TaskerTheme
+import com.example.tasker.ui.theme.White
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ToolBarComponent() {
+fun ToolBarComponent(params: ComponentParams) {
     val context = LocalContext.current
-
+    val (onProfileClick, onFilterClick, onNotificationClick, content, floatingActionButton) = params
     val menuExpanded = remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
             TopAppBar(
                 modifier = Modifier.height(135.dp),
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent
+                ),
                 navigationIcon = {
-                    ProfileComponent()
+                    ProfileComponent(onProfileClick)
                 },
                 title = {
                     Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
                         Text(
                             text = "¡Buenos días, ",
                             fontSize = 15.sp,
-                            color = MaterialTheme.colorScheme.onSurface
+                            color = MaterialTheme.colorScheme.primary
                         )
                         Text(
                             text = "John Doe! \uD83D\uDC4B",
-                            color = MaterialTheme.colorScheme.onSurface,
+                            color = MaterialTheme.colorScheme.primary,
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
                         )
@@ -70,15 +77,15 @@ fun ToolBarComponent() {
                             Icon(
                                 Icons.Rounded.FilterAlt,
                                 contentDescription = "Filters",
-                                tint = MaterialTheme.colorScheme.onSurface
+                                tint = MaterialTheme.colorScheme.primary
                             )
                         }
 
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = onNotificationClick) {
                             Icon(
                                 imageVector = Icons.Rounded.Notifications,
                                 contentDescription = "Notifications",
-                                tint = MaterialTheme.colorScheme.onSurface
+                                tint = MaterialTheme.colorScheme.primary
                             )
 
                         }
@@ -87,9 +94,11 @@ fun ToolBarComponent() {
                     DropdownMenu(
                         expanded = menuExpanded.value,
                         onDismissRequest = { menuExpanded.value = false },
-                        modifier = Modifier.background(
-                            MaterialTheme.colorScheme.surface
-                        ).width(200.dp),
+                        modifier = Modifier
+                            .background(
+                                MaterialTheme.colorScheme.surface
+                            )
+                            .width(200.dp),
                         offset = DpOffset(x = 5.dp, y = 0.dp),
                     ) {
                         DropdownMenuItem(
@@ -124,8 +133,9 @@ fun ToolBarComponent() {
                 }
             )
         },
+        floatingActionButton = floatingActionButton
     ) {
-
+        content()
     }
 }
 
@@ -133,7 +143,14 @@ fun ToolBarComponent() {
 @Composable
 fun ToolBarComponentPreview() {
     TaskerTheme {
-        ToolBarComponent()
+        val params = ComponentParams(
+            onProfileClick = { },
+            onFilterClick = { },
+            onNotificationClick = { },
+            content = { },
+            floatingActionButton = { }
+        )
+        ToolBarComponent(params)
     }
 }
 
@@ -141,4 +158,6 @@ data class ComponentParams(
     val onProfileClick: () -> Unit,
     val onFilterClick: () -> Unit,
     val onNotificationClick: () -> Unit,
+    val content: @Composable () -> Unit,
+    val floatingActionButton: @Composable () -> Unit
 )
