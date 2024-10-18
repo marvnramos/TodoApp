@@ -39,6 +39,14 @@ val CustomTypography = Typography(
         fontSize = 14.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
+    ),
+
+    labelSmall = TextStyle(
+        fontFamily = Poppins,
+        fontWeight = FontWeight.Normal,
+        fontSize = 8.sp,
+        lineHeight = 12.sp,
+        letterSpacing = 0.5.sp
     )
     /* Other default text styles to override
     titleLarge = TextStyle(
