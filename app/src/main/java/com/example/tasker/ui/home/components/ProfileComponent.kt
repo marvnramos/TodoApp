@@ -18,18 +18,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
-fun ProfileComponent() {
+fun ProfileComponent(onClick: () -> Unit) {
     Row(Modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
         Spacer(modifier = Modifier.width(10.dp))
         Card(
-            onClick = { },
+            onClick = onClick,
             modifier = Modifier.size(30.dp),
             elevation = CardDefaults.elevatedCardElevation(2.dp),
             colors = CardDefaults.cardColors(
@@ -37,7 +35,7 @@ fun ProfileComponent() {
                 contentColor = MaterialTheme.colorScheme.onSurface
             ),
             shape = CircleShape,
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface)
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
         ) {
             Image(
                 painter = rememberAsyncImagePainter(model = "https://firebasestorage.googleapis.com/v0/b/todotest-8ceb3.appspot.com/o/profiles%2F1729090620183.jpg?alt=media&token=89bdcc4b-6972-4b42-876c-d2c35c9217c5"),
