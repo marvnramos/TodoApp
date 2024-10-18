@@ -35,7 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tasker.data.models.Get
-import com.example.tasker.ui.view.screens.HomeScreen
+import com.example.tasker.ui.home.view.HomeScreen
 import com.example.tasker.ui.theme.TaskerTheme
 import retrofit2.Callback
 
