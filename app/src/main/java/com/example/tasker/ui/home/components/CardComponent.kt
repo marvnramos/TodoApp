@@ -168,19 +168,14 @@ fun CardComponent(
                     color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.labelSmall
                 )
-                SharingWithComponent()
+                Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.BottomEnd) {
+                    SharingWithComponent()
+                }
             }
 
         }
 
     }
-}
-
-@Composable
-fun SharingWithComponent() {
-    ProfileComponent(
-        onClick = {}
-    )
 }
 
 @Composable
