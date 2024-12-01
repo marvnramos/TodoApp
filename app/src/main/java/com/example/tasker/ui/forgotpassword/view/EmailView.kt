@@ -7,7 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.tasker.ui.view.Routes
+import com.example.tasker.data.controller.Routes
 import com.example.tasker.ui.commons.components.EmailTextField
 import com.example.tasker.ui.theme.TaskerTheme
 import com.example.tasker.ui.commons.TemplateView
