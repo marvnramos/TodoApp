@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.security.crypto.ktx)
+    implementation(libs.androidx.material3.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -98,4 +99,5 @@ dependencies {
 
     implementation("io.coil-kt:coil-compose:2.1.0")
     implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
+    implementation("androidx.compose.material3:material3:1.3.1")
 }
