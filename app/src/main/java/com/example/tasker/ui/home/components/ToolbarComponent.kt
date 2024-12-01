@@ -33,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.tasker.ui.theme.Blue
 import com.example.tasker.ui.theme.Grey
 import com.example.tasker.ui.theme.TaskerTheme
 import com.example.tasker.ui.theme.White
@@ -43,100 +44,93 @@ import com.example.tasker.ui.theme.White
 @Composable
 fun ToolBarComponent(params: ComponentParams) {
     val context = LocalContext.current
-    val (onProfileClick, onFilterClick, onNotificationClick, content, floatingActionButton) = params
+    val (onProfileClick, onFilterClick, onNotificationClick) = params
     val menuExpanded = remember { mutableStateOf(false) }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                modifier = Modifier.height(135.dp),
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
-                ),
-                navigationIcon = {
-                    ProfileComponent(onProfileClick)
-                },
-                title = {
-                    Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
-                        Text(
-                            text = "¡Buenos días, ",
-                            fontSize = 15.sp,
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                        Text(
-                            text = "John Doe! \uD83D\uDC4B",
-                            color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.titleLarge,
-                            fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
-                        )
-                    }
-                },
-                actions = {
-                    Row(Modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
-                        IconButton(onClick = { menuExpanded.value = true }) {
-                            Icon(
-                                Icons.Rounded.FilterAlt,
-                                contentDescription = "Filters",
-                                tint = MaterialTheme.colorScheme.primary
-                            )
-                        }
-
-                        IconButton(onClick = onNotificationClick) {
-                            Icon(
-                                imageVector = Icons.Rounded.Notifications,
-                                contentDescription = "Notifications",
-                                tint = MaterialTheme.colorScheme.primary
-                            )
-
-                        }
-                    }
-
-                    DropdownMenu(
-                        expanded = menuExpanded.value,
-                        onDismissRequest = { menuExpanded.value = false },
-                        modifier = Modifier
-                            .background(
-                                MaterialTheme.colorScheme.surface
-                            )
-                            .width(200.dp),
-                        offset = DpOffset(x = 5.dp, y = 0.dp),
-                    ) {
-                        DropdownMenuItem(
-                            text = { Text(text = "Por hacer") },
-                            onClick = {
-                                menuExpanded.value = false
-                                Toast.makeText(context, "clicked 1", Toast.LENGTH_SHORT).show()
-                            }
-                        )
-                        DropdownMenuItem(
-                            text = { Text(text = "En progreso") },
-                            onClick = {
-                                menuExpanded.value = false
-                                Toast.makeText(context, "clicked 2", Toast.LENGTH_SHORT).show()
-                            }
-                        )
-                        DropdownMenuItem(
-                            text = { Text(text = "Hecho") },
-                            onClick = {
-                                menuExpanded.value = false
-                                Toast.makeText(context, "clicked 3", Toast.LENGTH_SHORT).show()
-                            }
-                        )
-                        DropdownMenuItem(
-                            text = { Text(text = "Todo") },
-                            onClick = {
-                                menuExpanded.value = false
-                                Toast.makeText(context, "clicked 3", Toast.LENGTH_SHORT).show()
-                            }
-                        )
-                    }
-                }
-            )
+    TopAppBar(
+        modifier = Modifier.height(110.dp),
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = Color.Transparent
+        ),
+        navigationIcon = {
+            ProfileComponent(onProfileClick)
         },
-        floatingActionButton = floatingActionButton
-    ) {
-        content()
-    }
+        title = {
+            Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
+                Text(
+                    text = "¡Buenos días, ",
+                    fontSize = 15.sp,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                Text(
+                    text = "John Doe! \uD83D\uDC4B",
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                )
+            }
+        },
+        actions = {
+            Row(Modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
+                IconButton(onClick = { menuExpanded.value = true }) {
+                    Icon(
+                        Icons.Rounded.FilterAlt,
+                        contentDescription = "Filters",
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+
+                IconButton(onClick = onNotificationClick) {
+                    Icon(
+                        imageVector = Icons.Rounded.Notifications,
+                        contentDescription = "Notifications",
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+
+                }
+            }
+
+            DropdownMenu(
+                expanded = menuExpanded.value,
+                onDismissRequest = { menuExpanded.value = false },
+                modifier = Modifier
+                    .background(
+                        MaterialTheme.colorScheme.surface
+                    )
+                    .width(200.dp),
+                offset = DpOffset(x = 5.dp, y = 0.dp),
+            ) {
+                DropdownMenuItem(
+                    text = { Text(text = "Por hacer") },
+                    onClick = {
+                        menuExpanded.value = false
+                        Toast.makeText(context, "clicked 1", Toast.LENGTH_SHORT).show()
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text(text = "En progreso") },
+                    onClick = {
+                        menuExpanded.value = false
+                        Toast.makeText(context, "clicked 2", Toast.LENGTH_SHORT).show()
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text(text = "Hecho") },
+                    onClick = {
+                        menuExpanded.value = false
+                        Toast.makeText(context, "clicked 3", Toast.LENGTH_SHORT).show()
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text(text = "Todo") },
+                    onClick = {
+                        menuExpanded.value = false
+                        Toast.makeText(context, "clicked 3", Toast.LENGTH_SHORT).show()
+                    }
+                )
+            }
+        }
+    )
 }
 
 @Preview
@@ -147,8 +141,6 @@ fun ToolBarComponentPreview() {
             onProfileClick = { },
             onFilterClick = { },
             onNotificationClick = { },
-            content = { },
-            floatingActionButton = { }
         )
         ToolBarComponent(params)
     }
@@ -158,6 +150,4 @@ data class ComponentParams(
     val onProfileClick: () -> Unit,
     val onFilterClick: () -> Unit,
     val onNotificationClick: () -> Unit,
-    val content: @Composable () -> Unit,
-    val floatingActionButton: @Composable () -> Unit
 )
