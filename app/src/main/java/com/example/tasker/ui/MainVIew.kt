@@ -11,7 +11,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tasker.data.controller.Routes
+import com.example.tasker.ui.Archive.view.ArchiveScreen
 import com.example.tasker.ui.commons.components.NavigationBarComponent
+import com.example.tasker.ui.friends.view.FriendScreen
 import com.example.tasker.ui.home.view.HomeScreen
 import com.example.tasker.ui.theme.TaskerTheme
 
@@ -26,8 +28,8 @@ fun MainView(navController: NavHostController) {
             modifier = Modifier.weight(1f)
         ) {
             composable(Routes.HOME) { HomeScreen() }
-//            composable(Routes.FRIENDS) { MapsScreen() }
-//            composable(Routes.ARCHIVED) { MapsScreen() }
+            composable(Routes.ARCHIVED) { ArchiveScreen(onArrowClick = {}) }
+            composable(Routes.FRIENDS) { FriendScreen() }
 
         }
 
