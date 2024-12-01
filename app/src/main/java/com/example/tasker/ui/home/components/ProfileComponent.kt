@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,7 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun ProfileComponent(onClick: () -> Unit) {
     Row(Modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
@@ -38,7 +37,7 @@ fun ProfileComponent(onClick: () -> Unit) {
             border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
         ) {
             Image(
-                painter = rememberAsyncImagePainter(model = "https://firebasestorage.googleapis.com/v0/b/todotest-8ceb3.appspot.com/o/profiles%2F1729090620183.jpg?alt=media&token=89bdcc4b-6972-4b42-876c-d2c35c9217c5"),
+                painter = rememberAsyncImagePainter(model = defaultImage),
                 contentDescription = "Selected photo",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
