@@ -23,6 +23,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tasker.ui.theme.TaskerTheme
 
+const val defaultImage = "https://firebasestorage.googleapis.com/v0/b/todotest-8ceb3.appspot.com/o/profiles%2F1729185870553.jpg?alt=media&token=cb9f3ae4-b317-4617-b265-fa466190a416"
 
 @Composable
 fun SharingWithComponent() {
@@ -32,7 +33,7 @@ fun SharingWithComponent() {
         contentAlignment = Alignment.BottomCenter
     ) {
         Image(
-            painter = rememberAsyncImagePainter(model = "https://firebasestorage.googleapis.com/v0/b/todotest-8ceb3.appspot.com/o/profiles%2F1729090620183.jpg?alt=media&token=89bdcc4b-6972-4b42-876c-d2c35c9217c5"),
+            painter = rememberAsyncImagePainter(model = defaultImage),
             contentDescription = "Icono 1",
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -43,7 +44,7 @@ fun SharingWithComponent() {
         )
 
         Image(
-            painter = rememberAsyncImagePainter(model = "https://firebasestorage.googleapis.com/v0/b/todotest-8ceb3.appspot.com/o/profiles%2F1728073435083.jpg?alt=media&token=0fe744d1-75c2-471e-ab9f-834c15585709"), // Cambia el URL según tus imágenes
+            painter = rememberAsyncImagePainter(model = defaultImage),
             contentDescription = "Icono 2",
             contentScale = ContentScale.Crop,
             modifier = Modifier
