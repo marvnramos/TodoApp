@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,37 +25,40 @@ import com.example.tasker.ui.theme.TaskerTheme
 @Composable
 fun HomeScreen() {
     val context = LocalContext.current
-    val params = ComponentParams(
-        onProfileClick = { },
-        onFilterClick = { },
-        onNotificationClick = { },
-        content = {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(top = 150.dp)
-                    .verticalScroll(rememberScrollState())
-                    .background(Color.Transparent),
-
-                ) {
-                CardComponent("tarea1", title = "tarea 1", Status.TODO)
-                CardComponent("tarea2", title = "tarea 2", Status.IN_PROGRESS)
-                CardComponent("tarea3", title = "tarea 3", Status.DONE)
-                CardComponent("tarea4", title = "tarea 4", Status.IN_PROGRESS)
-                CardComponent("tarea5", title = "tarea 5", Status.TODO)
-                CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
-                CardComponent("tarea7", title = "tarea 7", Status.DONE)
-                CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
-                CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
-                CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
-                CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
-            }
-        },
-        floatingActionButton = {
-            AddButtonComponent { pushToTaskManager() }
-        }
+    val navBarParams = ComponentParams(
+        onProfileClick = {},
+        onFilterClick = {},
+        onNotificationClick = {},
     )
-    ToolBarComponent(params)
+    Scaffold (
+            topBar = {
+                ToolBarComponent(navBarParams)
+            },
+        floatingActionButton = { AddButtonComponent {  } }
+
+    ){
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 105.dp)
+                .verticalScroll(rememberScrollState())
+                .background(Color.Transparent),
+
+            ) {
+            CardComponent("tarea1", title = "tarea 1", Status.TODO)
+            CardComponent("tarea2", title = "tarea 2", Status.IN_PROGRESS)
+            CardComponent("tarea3", title = "tarea 3", Status.DONE)
+            CardComponent("tarea4", title = "tarea 4", Status.IN_PROGRESS)
+            CardComponent("tarea5", title = "tarea 5", Status.TODO)
+            CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
+            CardComponent("tarea7", title = "tarea 7", Status.DONE)
+            CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
+            CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
+            CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
+            CardComponent("tarea6", title = "tarea 6", Status.IN_PROGRESS)
+        }
+    }
+
 }
 
 @Preview
